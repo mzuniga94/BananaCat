@@ -1,0 +1,39 @@
+<!-- views/pages/myaccount.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<!-- TODO: Get username, name, address, etc. from database and post test results here. -->
+<main>
+ <!-- <div class="jumbotron">
+        <h1>My Account</h1>
+        <p>This is the account page.</p>
+        <p>Username: %= Username %></p>
+        <p>Name: %= FirstN %> %= LastN %></p>
+        <p>Address: %= Address %></p>
+        
+    </div> -->
+    <div class="jumbotron">
+        <h1>My Account</h1>
+        <p>This is the account page.</p>
+        <p>Username: test</p>
+        <p>Name: <%= user.FirstName %> <%= user.LastName %></p>
+        <p>Address: 123 A Street</p>
+        
+    </div>
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>
