@@ -26,7 +26,7 @@ connection.connect(function(err) {
    console.log('Connected to database');
    if (err) throw err;
    
-   connection.query("SELECT * FROM User WHERE LastName = 'Bedoy'", function (err, result, fields) {
+   connection.query("SELECT * FROM User WHERE LastName = 'Perez'", function (err, result, fields) {
     if (err) throw err;
     var results = result;
     console.log(result);
