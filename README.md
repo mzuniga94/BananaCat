@@ -1,4 +1,4 @@
-# CS362-Project-GroupSquared
+# CS362-GroupSquared-Project
 
 Group Members:
 
