@@ -76,6 +76,6 @@ app.get('/snacks', function(req, res){
 });
 
 // Starts the server!
-app.listen(process.env.PORT, process.env.IP, function(){
+app.listen(8080, function(){
    console.log("Server has started!");
 });
