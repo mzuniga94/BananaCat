@@ -4,10 +4,8 @@ var express = require("express");
 // Create the express() object.
 var app = express();
 
-
 // TODO: Put SQlite3 dependencies here. 
 var sqlite3 = require("sqlite3").verbose();
-
 
 /*
 var connection = mysql.createConnection({
@@ -77,37 +75,35 @@ app.set('view engine', 'ejs');
 
 // Renders the home/index page.
 app.get('/', function(req, res){ 
-   res.render('pages/index');
-});
-
-app.get('/products', function(req, res){
-   res.render('pages/products');
+   res.render('pages/index', { title: 'BananaCat' });
 });
 
 app.get('/apparel', function(req, res){
-   res.render('pages/apparel'); 
+   res.render('pages/apparel', { title: 'Apparel' }); 
 });
 
 app.get('/register', function(req, res){
-   res.render('pages/register');
+   res.render('pages/register', { title: 'Register' });
 });
 
 app.get('/login', function(req, res){
-   res.render('pages/login');
+   res.render('pages/login', { title: 'Login' });
 });
 
-
-
 app.get('/booksandmanga', function(req, res){
-   res.render('pages/booksandmanga');
+   res.render('pages/booksandmanga', { title: 'Books and Manga' });
 });
 
 app.get('/figurines', function(req, res){
-   res.render('pages/figurines');
+   res.render('pages/figurines', { title: 'Figurines' });
 });
 
 app.get('/snacks', function(req, res){
-   res.render('pages/snacks');
+   res.render('pages/snacks', { title: 'Snacks' });
+});
+
+app.get('/videogames', function(req, res){
+   res.render('pages/videogames', { title: 'Video Games' });
 });
 
 // Starts the server!
