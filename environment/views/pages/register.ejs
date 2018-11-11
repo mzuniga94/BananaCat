@@ -2,6 +2,31 @@
 <html lang="en">
 <head>
   <% include ../partials/head %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+  	$(document).ready(function(){
+  		var fn, ln, em, pass, add, c, s, z;
+  		$("#submit").click(function(){
+  			fn=$("#fname").val();
+  			ln=$("#lname").val();
+  			em=$("#inputEmail4").val();
+  			pass=$("#inputPassword4").val();
+  			add=$("#inputAddress").val();
+  			c=$("#inputCity").val();
+  			s=$("#inputState").val();
+  			z=$("#inputZip").val();
+  			$.post("http://localhost:8080/register",
+  		{fname: fn, lname: ln, inputEmail4: em, inputPassword4: pass, 
+  		 inputAddress: add, inputCity: c, inputState: s, inputZip: z},
+  		 function(data){
+  		 	if(data == "yes")
+  		 		{
+  		 			alert("Register Success");
+  		 		}
+  		 	});
+  		 });
+  	});
+  </script>
 </head>
 
 <header>
@@ -15,11 +40,11 @@
         <div class="form-row">
           <div class="col">
             <label for="firstName">First Name</label>
-            <input type="text" class="form-control" placeholder="Banana">
+            <input type="text" id="fname" class="form-control" placeholder="Banana">
           </div>
           <div class="col">
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" placeholder="Cat">
+            <input type="text" id="lname" class="form-control" placeholder="Cat">
           </div>
         </div>
         <div class="form-row">
@@ -35,10 +60,6 @@
         <div class="form-group">
           <label for="inputAddress">Address</label>
           <input type="text" class="form-control" id="inputAddress" placeholder="123 Banana St">
-        </div>
-        <div class="form-group">
-          <label for="inputAddress2">Address 2</label>
-          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
@@ -121,7 +142,7 @@
             </label>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <button type="submit" id="submit" class="btn btn-primary">Sign Up</button>
       </form>
       
   </div>

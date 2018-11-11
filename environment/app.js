@@ -1,47 +1,13 @@
+
 // Says that the project will need the Express library
-var express = require("express");
+var express = require('express');
+var bodyParser = require('body-parser');
+// TODO: Put SQlite3 dependencies here. 
+var sqlite3 = require('sqlite3').verbose();
 
 // Create the express() object.
 var app = express();
 
-// TODO: Put SQlite3 dependencies here. 
-var sqlite3 = require("sqlite3").verbose();
-
-/*
-var connection = mysql.createConnection({
-   host: 'bananacat.c7dnoyrsskf4.us-west-1.rds.amazonaws.com',
-   port: '3306',
-   user: 'BananaCat362',
-   password: 'catcpsc362',
-   database: 'JonathanBedoy'
-});
-
-
-
-var results = null;
-var n = "Bedoy";
-var templateA = "SELECT * FROM User WHERE LastName = ";
-
-connection.connect(function(err) {
-   if(err) {
-      console.error('Database connection failed: ' + err.stack);
-      return;
-   }
-   console.log('Connected to database');
-   if (err) throw err;
-   
-   connection.query("SELECT * FROM User WHERE LastName = 'Bedoy'", function (err, result, fields) {
-    if (err) throw err;
-    var results = result;
-    console.log(result);
-    app.get('/myaccount', function(req, res){
-   res.render('pages/myaccount',{user: result});
-});
-
-  });
-});
-
-*/
 var db = new sqlite3.Database('BananaCat.db', sqlite3.OPEN_READWRITE, (err) => {
 	if (err) {
 		console.error(err.message);
@@ -50,45 +16,103 @@ var db = new sqlite3.Database('BananaCat.db', sqlite3.OPEN_READWRITE, (err) => {
 });
 
 db.serialize(function(){
-	db.each("SELECT * FROM User", function(err, result) {
+	db.run("CREATE TABLE IF NOT EXISTS [Account](first_name TEXT,"+
+															"last_name TEXT NOT NULL,"+
+															"email TEXT NOT NULL UNIQUE PRIMARY KEY,"+
+															"password TEXT NOT NULL,"+
+															"address TEXT NOT NULL,"+
+															"city TEXT NOT NULL,"+
+															"state TEXT NOT NULL,"+
+															"zip_code INTEGER NOT NULL)");
+});
+
+/*
+db.serialize(function(){
+	db.each("SELECT * FROM Account", function(err, result) {
 	
 	if (err) {
 		console.error(err.message);
 	}
 	console.log(result);
 	
-	app.get('/myaccount', function(req, res){
-   res.render('pages/myaccount',{user: result});
-		});
 	});
 });
 
-/*db.close((err){
+/*
+db.close((err){
 	if (err) {
 		console.error(err.message);
 	}
 	console.log('Close the database connection.');
 }); 
-*/
+
+ */
+
 // Set the view engine to EJS. This means we're loading dynamic HTML files through EJS.
 app.set('view engine', 'ejs');
+app.use(express.static('partials'));
+
+// For parsing application/x-www-form-urlendcoded
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json());
 
 // Renders the home/index page.
-app.get('/', function(req, res){ 
-   res.render('pages/index', { title: 'BananaCat' });
+app.get('/', function(req, res) {
+  res.render('pages/index', { title: 'BananaCat'});
 });
 
+app.get('/register', function(req, res) {
+  res.render('pages/register', { title: 'Register'});
+});
+
+app.post('/register',function(req,res){
+	var f_name = req.body.fname;
+	var l_name = req.body.lname;
+	var email_ = req.body.inputEmail4;
+	var password_ = req.body.inputPassword4;
+	var address_ = req.body.inputAddress;
+	var city_ = req.body.inputCity;
+	var state_ = req.body.inputState;
+	var z_code = req.body.inputZip;
+	
+	console.log("First Name = "+f_name+", Last Name = "+l_name+",Email = "+email_+",Password = " +password_);
+	
+	db.run('INSERT INTO Account(first_name,last_name,email,password,address,city,state,zip_code)'
+	+'VALUES(?,?,?,?,?,?,?,?)',[f_name,l_name,email_,password_,address_,city_,state_,z_code]);
+
+	res.end("yes");
+});
+
+app.get('/myaccount', function(req, res) {
+   res.render('pages/myaccount');
+});
+	
 app.get('/apparel', function(req, res){
    res.render('pages/apparel', { title: 'Apparel' }); 
-});
-
-app.get('/register', function(req, res){
-   res.render('pages/register', { title: 'Register' });
 });
 
 app.get('/login', function(req, res){
    res.render('pages/login', { title: 'Login' });
 });
+
+app.post('/login', function(req,res){
+
+	var email = req.body.inputEmail;
+	var password = req.body.inputPassword;
+	console.log("Email = "+email+", password is "+password);
+	res.end("yes");
+	
+	db.each("SELECT * FROM Account", function(err, result) {
+	
+	if (err) {
+		console.error(err.message);
+	}
+	console.log(result);
+	
+	});
+
+});
+
 
 app.get('/booksandmanga', function(req, res){
    res.render('pages/booksandmanga', { title: 'Books and Manga' });
@@ -104,6 +128,16 @@ app.get('/snacks', function(req, res){
 
 app.get('/videogames', function(req, res){
    res.render('pages/videogames', { title: 'Video Games' });
+});
+
+
+app.use (function(req, res, next){
+	res.status().send("Sorry can't find that");
+});
+
+app.use(function(err, req, res, next){
+	console.error(err.stack)
+	res.status().send('Something broke!');
 });
 
 // Starts the server!
