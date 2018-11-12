@@ -5,6 +5,22 @@
 <html lang="en">
 <head>
     <% include ../partials/head %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    	$(document).ready(function(){
+    		var email, password;
+    		$("#submit").click(function(){
+    			email=$("#inputEmail").val();
+    			password=$("#inputPassword").val();
+    		$.post("http://localhost:8080/login",{inputEmail: email, inputPassword: password},
+    		function(data{
+    			if(data == "yes"){
+    				alert("Login Successful");
+    			}
+    		});
+    	});
+    });
+   </script> 
 </head>
 <body class="container">
 
