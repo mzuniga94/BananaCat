@@ -54,6 +54,10 @@ db.serialize(function(){
 															 "snack_name TEXT NOT NULL,"+
 															 "snack_desc TEXT NOT NULL,"+
 															 "snack_price TEXT NOT NULL)");
+															 
+	db.run("CREATE TABLE IF NOT EXISTS [Picture](pic_id TEXT NOT NULL PRIMARY KEY,"+
+																"pic_name TEXT NOT NULL,"+
+																"picture BLOB)");
 															 											 
 });
 
@@ -159,16 +163,6 @@ app.get('/snacks', function(req, res){
 
 app.get('/videogames', function(req, res){
    res.render('pages/videogames', { title: 'Video Games' });
-});
-
-
-app.use (function(req, res, next){
-	res.status().send("Sorry can't find that");
-});
-
-app.use(function(err, req, res, next){
-	console.error(err.stack)
-	res.status().send('Something broke!');
 });
 
 // Starts the server!
