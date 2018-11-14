@@ -118,8 +118,17 @@ app.post('/register',function(req,res){
 	res.end("yes");
 });
 
+app.locals.myVar = 1;
+let sql = 'Select * from Account';
 app.get('/myaccount', function(req, res) {
-   res.render('pages/myaccount');
+   db.all(sql, [], (err, rows) => {
+	if (err) {
+		throw err;
+	}
+	console.log(rows);
+	res.render('pages/myaccount', { title: 'myaccount', myacc : rows });
+	});
+   
 });
 	
 app.get('/apparel', function(req, res){

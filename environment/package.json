@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ajax": "0.0.4",
     "body-parser": "^1.18.3",
     "bootstrap": "^3.3.7",
     "ejs": "^2.6.1",
@@ -16,6 +17,7 @@
     "express-layout": "^0.1.0",
     "jquery": "^3.3.1",
     "multer": "^1.4.1",
+    "npm": "^6.4.1",
     "sqlite": "^3.0.0",
     "sqlite3": "^4.0.3"
   }
