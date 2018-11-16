@@ -2,6 +2,7 @@
 // Says that the project will need the Express library
 var express = require('express');
 var bodyParser = require('body-parser');
+var path = require('path');
 // TODO: Put SQlite3 dependencies here. 
 var sqlite3 = require('sqlite3').verbose();
 
@@ -92,16 +93,18 @@ db.close((err){
  */
 
 // Set the view engine to EJS. This means we're loading dynamic HTML files through EJS.
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'partials')));
 app.set('view engine', 'ejs');
 app.use(express.static('partials'));
 
 // For parsing application/x-www-form-urlendcoded
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
 // Renders the home/index page.
 app.get('/', function(req, res) {
-  res.render('pages/index', { title: 'BananaCat'});
+  res.render('pages/index', {title: 'BananaCat'});
 });
 
 app.get('/register', function(req, res) {
@@ -109,6 +112,7 @@ app.get('/register', function(req, res) {
 });
 
 app.post('/register',function(req,res){
+
 	var f_name = req.body.fname;
 	var l_name = req.body.lname;
 	var email_ = req.body.inputEmail4;
@@ -122,7 +126,7 @@ app.post('/register',function(req,res){
 	
 	db.run('INSERT INTO Account(first_name,last_name,email,password,address,city,state,zip_code)'
 	+'VALUES(?,?,?,?,?,?,?,?)',[f_name,l_name,email_,password_,address_,city_,state_,z_code]);
-
+	
 	res.end("yes");
 });
 
@@ -138,22 +142,20 @@ app.get('/login', function(req, res){
    res.render('pages/login', { title: 'Login' });
 });
 
-app.post('/login', function(req,res){
 
-	var email = req.body.inputEmail;
-	var password = req.body.inputPassword;
-	console.log("Email = "+email+", password is "+password);
+app.post('/login', function(req, res){
+	
+	var logEmail = req.body.inputEmail;
+	var logPassword = req.body.inputPassword;
+	console.log("email = "+logEmail+", password = "+logPassword);
+
+	db.each("SELECT * FROM Account WHERE email = '"+logEmail+"' AND password = '"+logPassword+"'", function(err, result){
+		
+		
+	});
+	
 	res.end("yes");
 	
-	db.each("SELECT * FROM Account", function(err, result) {
-	
-	if (err) {
-		console.error(err.message);
-	}
-	console.log(result);
-	
-	});
-
 });
 
 
@@ -172,6 +174,7 @@ app.get('/snacks', function(req, res){
 app.get('/videogames', function(req, res){
    res.render('pages/videogames', { title: 'Video Games' });
 });
+
 
 // Starts the server!
 app.listen(8080, function(){

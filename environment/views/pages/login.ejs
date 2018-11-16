@@ -8,14 +8,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
     	$(document).ready(function(){
-    		var email, password;
-    		$("#submit").click(function(){
-    			email=$("#inputEmail").val();
-    			password=$("#inputPassword").val();
-    		$.post("http://localhost:8080/login",{inputEmail: email, inputPassword: password},
-    		function(data{
-    			if(data == "yes"){
-    				alert("Login Successful");
+    		var logEmail, logPassword;
+    		$("#submit_").click(function(){
+    			logEmail=$("#inputEmail").val();
+    			logPassword=$("#inputPassword").val();
+    		$.post("http://localhost:8080/login",{inputEmail: logEmail, inputPassword: logPassword},
+    		function(data1){
+    			if(data1 == "yes"){
+    				alert("Login Successful")
     			}
     		});
     	});
@@ -46,7 +46,7 @@
         <div class="forgot">
         <a href="reset.html">Forgot password?</a>
 </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" id="submit_" class="btn btn-primary">Login</button>
 
     </form>
 </div>
