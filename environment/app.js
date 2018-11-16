@@ -175,6 +175,9 @@ app.get('/videogames', function(req, res){
    res.render('pages/videogames', { title: 'Video Games' });
 });
 
+app.get('/contactus', function(req, res){
+   res.render('pages/contact', { title: 'Contact Us' });
+});
 
 // Starts the server!
 app.listen(8080, function(){
