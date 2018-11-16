@@ -1,1 +1,106 @@
+<!-- views/pages/customerservice.ejs -->
 
+
+<html lang="en">
+    <style>
+        .btn-group button{
+            background-color: #4CAF50; /* Green Background */
+            border: 1px solid green; /* Green Border */
+            color: white; /* White Text */
+            padding: 30px 30px; /*Some Padding*/
+            cursor: pointer; /* Pointer/hand icon */
+            width: 50%;
+            display: block; /*Make the buttons appear below each other*/
+        }
+        
+        .btn-group button:hover{
+            background-color: #3e8e41;
+        }
+        
+        .contact-info{
+            background-color:lightgrey;
+            width: 100%;
+        }
+        
+    </style>
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+<main>
+    <div class="container">
+        <h1 align="center">BananaCat</h1>
+        <h2 align="center">Reason for Inquiry</h2>
+        <p align="center">Please select the purpose for your inquiry</p>
+        
+    </div>
+    
+    <div class="btn-group">
+        <button align="center">Sales Inquiry</button>
+        <button align="center">Customer Support</button>
+    </div>
+    <div class="contact-info">
+        <div class="row">
+            <div class="column">
+                <div class="container">
+                    <h2>Corporate Headquarters</h2>
+                    <p>Corporate Headquarters
+                    <br> BananaCat
+                    <br>1234 BananaCat Ave, Suite 3
+                    <br>Fullerton, CA 123456</p>
+                </div>
+                
+                <div class="container">
+                    <h2>Sales Info & Inquiries</h2>
+                    <p>Toll-Free:800-123-1234
+                    <br>Email: info@bananacat.com</p>
+            
+                </div>
+                
+                  
+                
+             
+            </div>
+    
+            <div class="column">
+            
+                <div class="container">
+                    <h2>General Contact</h2>
+                    <p>Toll-Free:888-123-1234
+                    <br>Phone: 718-239-1294
+                    <br>Fax: 712-495-1234
+                    <br>Email: bananacat@gmail.com</p> 
+                
+                </div>
+                
+                
+                <div class="container">
+                    <h2>International Sales</h2>
+                    <p>Email: international@bananacat.com<br>Phone: 234-098-1238
+                    <br>Schedule: Monday-Thursday 1:15 AM to 10:30 PM ET
+                    <br>Friday &:30 AM to 10:30 PM ET</p>
+                
+                </div>
+                
+            
+            </div>
+        </div>
+        
+    </div>
+
+
+</main>
+
+
+
+
+
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+</body>
