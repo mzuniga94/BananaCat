@@ -3,6 +3,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 
+var review = []; /* For adding a review. Will need a separate table in the database eventually */
+
 //myVar = is user logged in? boolean
 myVar = 0;
 //userVar = when user is logged in all data stored here
@@ -163,13 +165,18 @@ app.get('/apparel', function(req, res){
 });
 
 app.get('/midoriyahoodie', function(req, res){
-	res.render('pages/midoriyahoodie', { title: 'Midoriya Hoodie'});
+	res.render('pages/midoriyahoodie', { title: 'Midoriya Hoodie', review: review});
+});
+
+app.post('/addreview', function(req, res){
+	var newReview = req.body.newreview;
+	review.push(newReview);
+	res.redirect('/midoriyahoodie');
 });
 
 app.get('/login', function(req, res){
    res.render('pages/login', { title: 'Login', myVar });
 });
-
 
 app.post('/login', function(req, res){
 	var logEmail = req.body.inputEmail;
