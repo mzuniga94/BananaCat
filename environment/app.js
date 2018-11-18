@@ -2,6 +2,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
+
+//myVar = is user logged in? boolean
+myVar = 0;
+//userVar = when user is logged in all data stored here
+userVar = 0;
+
 // TODO: Put SQlite3 dependencies here. 
 var sqlite3 = require('sqlite3').verbose();
 
@@ -107,7 +113,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/register', function(req, res) {
-  res.render('pages/register', { title: 'Register'});
+  res.render('pages/register', { title: 'Register', myVar});
 });
 
 app.post('/register',function(req,res){
@@ -126,13 +132,17 @@ app.post('/register',function(req,res){
 	db.run('INSERT INTO Account(first_name,last_name,email,password,address,city,state,zip_code)'
 	+'VALUES(?,?,?,?,?,?,?,?)',[f_name,l_name,email_,password_,address_,city_,state_,z_code]);
 	
+
+	db.each("SELECT * FROM Account WHERE email = '"+email_+"' AND password = '"+password_+"'", function(err, result){
+
+		myVar = 1;
+		console.log("Registration successful! myVar = ", myVar);
+		userVar = result;
+	});
 	res.end("yes");
 });
 let sql = 'Select * from Account';
-//myVar = is user logged in? boolean
-myVar = 0;
-//userVar = when user is logged in all data stored here
-userVar = 0;
+
 app.get('/myaccount', function(req, res) {
    db.all(sql, [], (err, rows) => {
 	if (err) {
@@ -162,17 +172,20 @@ app.get('/login', function(req, res){
 
 
 app.post('/login', function(req, res){
-	
 	var logEmail = req.body.inputEmail;
 	var logPassword = req.body.inputPassword;
-	console.log("email = "+logEmail+", password = "+logPassword);
-	
+	if(logEmail === logPassword) {
+		myVar = 0;
+		console.log("Logout successful! myVar = ", myVar);
+	} else { 
+	console.log("email = "+logEmail+", password = "+logPassword+", myVar = "+myVar);
 		db.each("SELECT * FROM Account WHERE email = '"+logEmail+"' AND password = '"+logPassword+"'", function(err, result){
 
 		myVar = 1;
 		console.log("login successful! myVar = ", myVar);
 		userVar = result;
 		});
+	}
 		res.end("yes");
 		
 });

@@ -22,6 +22,7 @@
   		 	if(data == "yes")
   		 		{
   		 			alert("Register Success");
+					window.location.replace("/?");
   		 		}
   		 	});
   		 });
@@ -34,6 +35,7 @@
 </header>
 
   <div class="container">
+	<% if(!myVar) { %>
       <h1> Register! </h1>
 
       <form>
@@ -144,7 +146,9 @@
         </div>
         <button type="submit" id="submit" class="btn btn-primary">Sign Up</button>
       </form>
-      
+      <% } else {%>
+	<h1> You have already regisered and logged in! </h1>
+	<% } %>
   </div>
 <footer>
     <% include ../partials/footer %>

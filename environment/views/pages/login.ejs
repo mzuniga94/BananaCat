@@ -16,21 +16,21 @@
     		function(data1){
     			if(data1 == "yes"){
     				alert("Login Successful")
+				window.location.replace("/?");
     			}
     		});
     	});
 		$("#submitL").click(function(){
-			logEmail=-1;
-    			logPassword=$("#inputPassword").val();
-    		$.post("http://localhost:8080/login",{inputEmail: logEmail, inputPassword: logPassword},
+			$.post("http://localhost:8080/login",{inputEmail: "a", inputPassword: "a"},
     		function(data1){
     			if(data1 == "yes"){
     				alert("Logout Successful")
+				window.location.replace("/login");	
     			}
-    		});
-
-
+			
 		});
+		});
+		
     });
    </script> 
 </head>
@@ -67,9 +67,9 @@
         <button type="submit" id="submit_" class="btn btn-primary">Login</button>
 
     </form>
-	<% } else {%>
-		<button type="submit" id="submitL" class="btn btn-primary">Logout</button>
-
+	<% } else {  %>
+		
+	<button type="submit" id="submitL" class="btn btn-primary">Logout</button>
 
 
 	<% } %>
