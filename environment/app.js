@@ -145,9 +145,15 @@ app.get('/myaccount', function(req, res) {
 	});
    
 });
-	
+
+/* START APPAREL ROUTES */
+
 app.get('/apparel', function(req, res){
    res.render('pages/apparel', { title: 'Apparel' }); 
+});
+
+app.get('/midoriyahoodie', function(req, res){
+	res.render('pages/midoriyahoodie', { title: 'Midoriya Hoodie'});
 });
 
 app.get('/login', function(req, res){
