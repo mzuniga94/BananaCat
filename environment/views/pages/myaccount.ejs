@@ -22,13 +22,16 @@
         
     </div> -->
     <div class="jumbotron">
+	<% if(myVar) { %>
         <h1>My Account</h1>
-        <p>Email: <%= myacc[0].email %></p>
+        <p>Email: <%= userVar.email %></p>
 	
-        <p>Name:  <%= myacc[0].first_name %> <%= myacc[0].last_name %></p>
+        <p>Name:  <%= userVar.first_name %> <%= userVar.last_name %></p>
 	
-        <p>Address: <%= myacc[0].address %>, <%= myacc[0].state %> <%= myacc[0].zip_code %></p>
-        
+        <p>Address: <%= userVar.address %>, <%= userVar.state %> <%= userVar.zip_code %></p>
+       <% } else { %>
+	<a class="nav-link" href="/login">Not logged in please login</a>
+	<% } %>
     </div>
 </main>
 

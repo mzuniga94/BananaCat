@@ -19,6 +19,18 @@
     			}
     		});
     	});
+		$("#submitL").click(function(){
+			logEmail=-1;
+    			logPassword=$("#inputPassword").val();
+    		$.post("http://localhost:8080/login",{inputEmail: logEmail, inputPassword: logPassword},
+    		function(data1){
+    			if(data1 == "yes"){
+    				alert("Logout Successful")
+    			}
+    		});
+
+
+		});
     });
    </script> 
 </head>
@@ -30,10 +42,16 @@
   </head>
 <body id="LoginForm">
 <div class="container">
+<% if(!myVar) { %>
 <h1 class="form-heading">Login</h1>
+<% } else { %>
+<h1 class="form-heading">You are now logged in!</h1>
+<% } %>
 <div class="login-form">
 <div class="main-div">
+	<% if(!myVar) { %>
     <div class="panel">
+	
    <p>Please enter your email and password</p>
    </div>
     <form id="Login">
@@ -49,6 +67,12 @@
         <button type="submit" id="submit_" class="btn btn-primary">Login</button>
 
     </form>
+	<% } else {%>
+		<button type="submit" id="submitL" class="btn btn-primary">Logout</button>
+
+
+
+	<% } %>
 </div>
 </body>
 </html>

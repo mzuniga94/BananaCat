@@ -1,4 +1,3 @@
-
 // Says that the project will need the Express library
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -129,9 +128,22 @@ app.post('/register',function(req,res){
 	
 	res.end("yes");
 });
-
+let sql = 'Select * from Account';
+//myVar = is user logged in? boolean
+myVar = 0;
+//userVar = when user is logged in all data stored here
+userVar = 0;
 app.get('/myaccount', function(req, res) {
-   res.render('pages/myaccount');
+   db.all(sql, [], (err, rows) => {
+	if (err) {
+		throw err;
+	}
+	console.log(rows);
+	//console.log("myVar = ", myVar);
+	//console.log(userVar);
+	res.render('pages/myaccount', { title: 'myaccount', userVar, myVar});
+	});
+   
 });
 	
 app.get('/apparel', function(req, res){
@@ -139,7 +151,7 @@ app.get('/apparel', function(req, res){
 });
 
 app.get('/login', function(req, res){
-   res.render('pages/login', { title: 'Login' });
+   res.render('pages/login', { title: 'Login', myVar });
 });
 
 
@@ -148,14 +160,15 @@ app.post('/login', function(req, res){
 	var logEmail = req.body.inputEmail;
 	var logPassword = req.body.inputPassword;
 	console.log("email = "+logEmail+", password = "+logPassword);
+	
+		db.each("SELECT * FROM Account WHERE email = '"+logEmail+"' AND password = '"+logPassword+"'", function(err, result){
 
-	db.each("SELECT * FROM Account WHERE email = '"+logEmail+"' AND password = '"+logPassword+"'", function(err, result){
+		myVar = 1;
+		console.log("login successful! myVar = ", myVar);
+		userVar = result;
+		});
+		res.end("yes");
 		
-		
-	});
-	
-	res.end("yes");
-	
 });
 
 
