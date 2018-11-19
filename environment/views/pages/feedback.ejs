@@ -1,0 +1,142 @@
+<!-- views/pages/feedback.ejs -->
+
+
+<html lang="en">
+    <style>
+        
+        .contact-info{
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        body {font-family: Arial, Helvetica, sans-serif;}
+        * {box-sizing: border-box;}
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        
+    </style>
+
+<head>
+    <% include ../partials/head %>
+</head>
+
+
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+<main>
+    
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-4">  <!--This is the left column that has the contact information and should redirect customers who are looking to contact customer service > feedback-->
+            <h2>Need to Contact Us?</h2>
+            <br><br>
+            <div class="container">
+              <h5>Corporate Headquarters</h5>
+              <p>Corporate Headquarters
+                <br> BananaCat
+                <br>1234 BananaCat Ave, Suite 3
+                <br>Fullerton, CA 123456</p>
+            </div>
+            <br><br>
+            <b>Please head over to our contact page for more specific inquries regarding: sales, customer support or international concerns.</b> <!-- Insert link to contact page here somewhere...-->
+          </div>
+          <div class="col-sm-8"> <!--Feedback form-->
+            <h2>Feedback Form</h2>
+
+            <div class="container">Let us know how we're doing, or if there is anything that we can improve!<br><br></div> <!-- Add blurb about how much we value feedback, etc.-->
+
+            <form action="/action_page.php">  
+              <form>
+                <div class="form-row">
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="First name">
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Last name">
+                  </div>
+                </div>
+                <br>
+                <div class="form-group"> <!-- formated to look like the create an account page, etc. -->
+                  <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                </div>
+                <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                <br>
+
+                <input type="sumbit" value="Submit" class="btn btn-primary btn-lg btn-block"></button> <!-- button styled like the rest of the website -->
+
+              </form>
+
+          </div>
+
+          </form>
+        </div>
+
+      </html>
+
+
+
+</html>
+
+    <script>
+        var form = document.getElementsByTagName('form')[0];
+        form.addEventListener('submit',contact,false);
+        function contact(e) {
+          // Prevent Default Form Submission
+          e.preventDefault();
+
+          var target = e.target || e.srcElement;
+          var i = 0;
+          var message = '';
+
+         // Loop Through All Input Fields
+          for(i = 0; i < target.length; ++i) {
+            // Check to make sure it's a value. Don't need to include Buttons
+            if(target[i].type != 'text' && target[i].type != 'textarea') {
+                   // Skip to next input since this one doesn't match our rules
+               continue;
+            }
+
+            // Add Input Name and value followed by a line break
+            message += target[i].name + ': ' + target[i].value + "\r\n";
+         }
+         // Modify the hidden body input field that is required for the mailto: scheme
+         target.elements["body"].value = message;
+
+        // Submit the form since we previously stopped it. May cause recursive loop in some browsers? Should research this.
+         this.submit();
+        }
+    </script>
+
+</main>
+
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+</body>
