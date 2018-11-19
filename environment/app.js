@@ -229,6 +229,10 @@ app.get('/contactus', function(req, res){
    res.render('pages/contactus', { title: 'Contact Us' });
 });
 
+app.get('/feedback', function(req, res){
+   res.render('pages/feedback', { title: 'Feedback'});
+});
+
 // Starts the server!
 app.listen(8080, function(){
    console.log("Server has started!");
