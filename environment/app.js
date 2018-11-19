@@ -34,6 +34,7 @@ db.serialize(function(){
 		"city TEXT NOT NULL,"+
 		"state TEXT NOT NULL,"+
 		"zip_code INTEGER NOT NULL)");
+			
 	
 	db.run("CREATE TABLE IF NOT EXISTS [Book]("+
 		"book_id TEXT NOT NULL PRIMARY KEY,"+
@@ -55,6 +56,7 @@ db.serialize(function(){
 		"apparel_id TEXT NOT NULL PRIMARY KEY,"+
 		"apparel_brand TEXT NOT NULL,"+
 		"apparel_name TEXT NOT NULL,"+
+		"apparel_size TEXT NOT NULL,"+
 		"apparel_desc TEXT NOT NULL,"+
 		"apparel_price TEXT NOT NULL,"+
 		"FOREIGN KEY(apparel_id) REFERENCES Picture(pic_id))");
@@ -79,7 +81,11 @@ db.serialize(function(){
 		"pic_id TEXT NOT NULL PRIMARY KEY,"+
 		"pic_name TEXT NOT NULL,"+
 		"picture BLOB)");
-															 											 
+															 		
+	db.run("CREATE TABLE IF NOT EXISTS [Review]("+
+		"review_id TEXT NOT NULL PRIMARY KEY,"+
+		"review_item TEXT,"+
+		"review_comment TEXT)");
 });
 
 /*
