@@ -40,35 +40,40 @@ db.serialize(function(){
 		"book_title TEXT NOT NULL,"+
 		"author_name TEXT NOT NULL,"+
 		"genre TEXT NOT NULL,"+
-		"book_price TEXT NOT NULL)");
+		"book_price TEXT NOT NULL,"+
+		"FOREIGN KEY(book_id) REFERENCES Picture(pic_id))");
 	
 	db.run("CREATE TABLE IF NOT EXISTS [Figurine]("+
 		"figurine_id TEXT NOT NULL PRIMARY KEY,"+
 		"figurine_brand TEXT NOT NULL,"+
 		"figurine_name TEXT NOT NULL,"+
 		"figurine_desc TEXT NOT NULL,"+
-		"figurine_price TEXT NOT NULL)");
+		"figurine_price TEXT NOT NULL,"+
+		"FOREIGN KEY(figurine_id) REFERENCES Picture(pic_id))");
 																
 	db.run("CREATE TABLE IF NOT EXISTS [Apparel]("+
 		"apparel_id TEXT NOT NULL PRIMARY KEY,"+
 		"apparel_brand TEXT NOT NULL,"+
 		"apparel_name TEXT NOT NULL,"+
 		"apparel_desc TEXT NOT NULL,"+
-		"apparel_price TEXT NOT NULL)");
+		"apparel_price TEXT NOT NULL,"+
+		"FOREIGN KEY(apparel_id) REFERENCES Picture(pic_id))");
 																
 	db.run("CREATE TABLE IF NOT EXISTS [VideoGame]("+
 		"vgame_id TEXT NOT NULL PRIMARY KEY,"+
 		"platform TEXT NOT NULL,"+
 		"vgame_name TEXT NOT NULL,"+
 		"vgame_desc TEXT NOT NULL,"+
-		"vgame_price TEXT NOT NULL)");
+		"vgame_price TEXT NOT NULL,"+
+		"FOREIGN KEY(vgame_id) REFERENCES Picture(pic_id))");
 																  
 	db.run("CREATE TABLE IF NOT EXISTS [Snack]("+
 		"snack_id TEXT NOT NULL PRIMARY KEY,"+
 		"snack_brand TEXT NOT NULL,"+
 		"snack_name TEXT NOT NULL,"+
 		"snack_desc TEXT NOT NULL,"+
-		"snack_price TEXT NOT NULL)");
+		"snack_price TEXT NOT NULL,"+
+		"FOREIGN KEY(snack_id) REFERENCES Picture(pic_id))");
 															 
 	db.run("CREATE TABLE IF NOT EXISTS [Picture]("+
 		"pic_id TEXT NOT NULL PRIMARY KEY,"+
