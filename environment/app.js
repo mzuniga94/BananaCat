@@ -157,16 +157,20 @@ app.post('/register',function(req,res){
 let sql = 'Select * from Account';
 
 app.get('/myaccount', function(req, res) {
-   db.all(sql, [], (err, rows) => {
-	if (err) {
-		throw err;
-	}
-	console.log(rows);
+   //db.all(sql, [], (err, rows) => {
+	//if (err) {
+	//	throw err;
+	//}
+	//console.log(rows);
 	//console.log("myVar = ", myVar);
 	//console.log(userVar);
 	res.render('pages/myaccount', { title: 'myaccount', userVar, myVar});
-	});
+	//});
    
+});
+
+app.get('/head', function(req, res) {
+	res.render('partials/head', { title: 'head', userVar, myVar});   
 });
 
 /* START APPAREL ROUTES */

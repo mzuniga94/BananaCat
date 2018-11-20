@@ -22,23 +22,37 @@
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
+	<% if(!myVar) { %>
       <li class="nav-item">
         <a class="nav-link" href="/login">Login</a>
       </li>
+	
       <li class="nav-item">
         <a class="nav-link" href="/register">Register</a>
       </li>
-      
+      <% }%>
+	
       <li class="nav-item">
         <a class="nav-link" href="/contactus">Contact Us</a>
       </li>
-	
+	<% if(myVar) { %> 
 	<li class="nav-item">
         <a class="nav-link" href="/myaccount">My Account</a>
-      </li>      
+      </li>     
+	
+	<li class="nav-item">
+        <a class="nav-link" href="/login">Logout</a>
+      </li>
+	<% } %>
     </ul>
+	
   </div>
+	<% if(myVar) { %>
+	<P style="color:grey;font-family:Courier New;padding-top:13px;"> Welcome, <%= userVar.first_name %> </p>
+	<a href="/myaccount"><img src="https://cdn4.iconfinder.com/data/icons/shopping-in-color/64/shopping-in-color-05-512.png" alt="Cart" width="50" height="50"> </a>
+	<% } %>
 </nav>
 <style>
     body    { padding-top:50px; }
+
 </style>
