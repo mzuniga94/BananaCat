@@ -154,6 +154,7 @@ app.post('/register',function(req,res){
 	});
 	res.end("yes");
 });
+
 let sql = 'Select * from Account';
 
 app.get('/myaccount', function(req, res) {
@@ -191,6 +192,7 @@ app.post('/addreview', function(req, res){
 
 app.get('/login', function(req, res){
    res.render('pages/login', { title: 'Login', myVar });
+
 });
 
 app.post('/login', function(req, res){
@@ -200,8 +202,8 @@ app.post('/login', function(req, res){
 		myVar = 0;
 		console.log("Logout successful! myVar = ", myVar);
 	} else { 
-	console.log("email = "+logEmail+", password = "+logPassword+", myVar = "+myVar);
-		db.each("SELECT * FROM Account WHERE email = '"+logEmail+"' AND password = '"+logPassword+"'", function(err, result){
+		console.log("email = "+logEmail+", password = "+logPassword+", myVar = "+myVar);
+		db.each("SELECT * FROM Account WHERE email = '"+logEmail+"' AND password = '"+logPassword+"'",function(err, result){
 
 		myVar = 1;
 		console.log("login successful! myVar = ", myVar);
@@ -235,6 +237,32 @@ app.get('/contactus', function(req, res){
 
 app.get('/feedback', function(req, res){
    res.render('pages/feedback', { title: 'Feedback'});
+});
+
+app.get('/inventory', function(req, res){
+	res.render('pages/inventory', { title: 'Inventory'});
+	
+	db.all('SELECT DISTINCT(B.book_id), B.book_title, B.author_name, B.book_price,COUNT (DISTINCT(B.book_id))'+
+				' FROM Book AS B'+
+				' GROUP BY B.book_id ORDER BY COUNT(B.book_id)', function(err1, result1){
+				
+					console.log(result1);
+				});
+
+	db.all('SELECT DISTINCT(A.apparel_id), A.apparel_brand, A.apparel_name, A.apparel_size, A.apparel_price,COUNT(DISTINCT (A.apparel_id))'+
+				' FROM Apparel AS A'+
+				' GROUP BY A.apparel_id ORDER BY COUNT (A.apparel_id)', function(err2, result2){
+				
+					console.log(result2);
+				});
+
+	db.all('SELECT DISTINCT(F.figurine_id), F.figurine_brand, F.figurine_name, F.figurine_price,COUNT(DISTINCT(F.figurine_id))'+
+				' FROM Figurine AS F'+
+				' GROUP BY F.figurine_id ORDER BY COUNT (F.figurine_id)', function(err3, result3){
+				
+					console.log(result3);
+				});
+	
 });
 
 // Starts the server!
