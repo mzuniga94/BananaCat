@@ -192,6 +192,27 @@ app.post('/addreview', function(req, res){
 
 app.get('/login', function(req, res){
    res.render('pages/login', { title: 'Login', myVar });
+   
+   db.all('SELECT DISTINCT(B.book_id) AS Book_ID, B.book_title AS Book_Name, B.author_name AS Book_Author, B.book_price AS Book_Price,COUNT (DISTINCT(B.book_id)) AS Book_Quantity'+
+				' FROM Book AS B'+
+				' GROUP BY B.book_id ORDER BY COUNT(B.book_id)', function(err1, result1){
+				
+					console.log(result1);
+				});
+
+	db.all('SELECT DISTINCT(A.apparel_id) AS Apparel_ID, A.apparel_brand AS Apparel_Brand, A.apparel_name AS Apparel_Name, A.apparel_size AS Apparel_Size, A.apparel_price AS Apparel_Price, COUNT(DISTINCT (A.apparel_id)) AS Apparel_Quantity'+
+				' FROM Apparel AS A'+
+				' GROUP BY A.apparel_id ORDER BY COUNT (A.apparel_id)', function(err2, result2){
+				
+					console.log(result2);
+				});
+
+	db.all('SELECT DISTINCT(F.figurine_id) AS Figurine_ID, F.figurine_brand AS Figurine_Brand, F.figurine_name AS Figurine_Name, F.figurine_price AS Figurine_Price,COUNT(DISTINCT(F.figurine_id)) AS Figurine_Quantity'+
+				' FROM Figurine AS F'+
+				' GROUP BY F.figurine_id ORDER BY COUNT (F.figurine_id)', function(err3, result3){
+				
+					console.log(result3);
+				});
 
 });
 
@@ -242,21 +263,21 @@ app.get('/feedback', function(req, res){
 app.get('/inventory', function(req, res){
 	res.render('pages/inventory', { title: 'Inventory'});
 	
-	db.all('SELECT DISTINCT(B.book_id), B.book_title, B.author_name, B.book_price,COUNT (DISTINCT(B.book_id))'+
+	db.all('SELECT DISTINCT(B.book_id) AS Book ID, B.book_title AS Book Name, B.author_name AS Book Author, B.book_price AS Book Price,COUNT (DISTINCT(B.book_id) AS Book Quantity)'+
 				' FROM Book AS B'+
 				' GROUP BY B.book_id ORDER BY COUNT(B.book_id)', function(err1, result1){
 				
 					console.log(result1);
 				});
 
-	db.all('SELECT DISTINCT(A.apparel_id), A.apparel_brand, A.apparel_name, A.apparel_size, A.apparel_price,COUNT(DISTINCT (A.apparel_id))'+
+	db.all('SELECT DISTINCT(A.apparel_id) AS Apparel ID, A.apparel_brand AS Apparel Brand, A.apparel_name AS Apparel Name, A.apparel_size AS Apparel Size, A.apparel_price AS Apparel Price, COUNT(DISTINCT (A.apparel_id) Apparel Quantity)'+
 				' FROM Apparel AS A'+
 				' GROUP BY A.apparel_id ORDER BY COUNT (A.apparel_id)', function(err2, result2){
 				
 					console.log(result2);
 				});
 
-	db.all('SELECT DISTINCT(F.figurine_id), F.figurine_brand, F.figurine_name, F.figurine_price,COUNT(DISTINCT(F.figurine_id))'+
+	db.all('SELECT DISTINCT(F.figurine_id) AS Figurine ID, F.figurine_brand AS Figurine Brand, F.figurine_name AS Figurine Name, F.figurine_price AS Figurine Price,COUNT(DISTINCT(F.figurine_id) AS Figurine Quantity)'+
 				' FROM Figurine AS F'+
 				' GROUP BY F.figurine_id ORDER BY COUNT (F.figurine_id)', function(err3, result3){
 				
