@@ -222,6 +222,7 @@ app.post('/login', function(req, res){
 	if(logEmail === logPassword) {
 		myVar = 0;
 		console.log("Logout successful! myVar = ", myVar);
+		res.end("yes");
 	} else { 
 		console.log("email = "+logEmail+", password = "+logPassword+", myVar = "+myVar);
 		db.each("SELECT * FROM Account WHERE email = '"+logEmail+"' AND password = '"+logPassword+"'",function(err, result){
@@ -229,9 +230,10 @@ app.post('/login', function(req, res){
 		myVar = 1;
 		console.log("login successful! myVar = ", myVar);
 		userVar = result;
+		res.end("yes");
 		});
 	}
-		res.end("yes");
+		
 		
 });
 
