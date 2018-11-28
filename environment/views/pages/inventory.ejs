@@ -25,18 +25,30 @@
                </tr>
             </thead>
             <tbody>
+		<% for( var i = 0; i < 6; i++) { %>
                <tr>
-                  <td>123</td>
-                  <td>Some shirt</td>
+                  <td><%= inv1[i].Book_ID %></td>
+                  <td><%= inv1[i].Book_Name %></td>
+                  <td>Book</td>
+                  <td><%= inv1[i].Book_Price %></td>
+               </tr>
+		<% } %>
+               <% for( var i = 0; i < 6; i++) { %>
+               <tr>
+                  <td><%= inv2[i].Apparel_ID %></td>
+                  <td><%= inv2[i].Apparel_Name %></td>
                   <td>Apparel</td>
-                  <td>5.99</td>
+                  <td><%= inv2[i].Apparel_Price %></td>
                </tr>
+		<% } %>
+		<% for( var i = 0; i < 6; i++) { %>
                <tr>
-                  <td>234</td>
-                  <td>Candy</td>
-                  <td>Snacks</td>
-                  <td>9999.99</td>
+                  <td><%= inv3[i].Figurine_ID %></td>
+                  <td><%= inv3[i].Figurine_Name %></td>
+                  <td>Figurine</td>
+                  <td><%= inv3[i].Figurine_Price %></td>
                </tr>
+		<% } %>
             </tbody>
          </table>
          <hr>
