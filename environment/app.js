@@ -261,7 +261,6 @@ app.get('/contactus', function(req, res){
 app.get('/feedback', function(req, res){
    res.render('pages/feedback', { title: 'Feedback'});
 });
-
 app.get('/inventory', function(req, res){
 	res.render('pages/inventory', { title: 'Inventory'});
 	
