@@ -181,7 +181,11 @@ app.get('/apparel', function(req, res){
 });
 
 app.get('/midoriyahoodie', function(req, res){
-	res.render('pages/midoriyahoodie', { title: 'Midoriya Hoodie', review: review});
+	db.each("SELECT * FROM Apparel WHERE Apparel_ID = '00009'",function(err, result){
+		console.log(result);
+		res.render('pages/midoriyahoodie', { title: 'Midoriya Hoodie', review: review, result});
+		});
+
 });
 
 app.post('/addreview', function(req, res){
