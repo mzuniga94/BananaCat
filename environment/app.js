@@ -155,7 +155,7 @@ app.post('/register',function(req,res){
 	res.end("yes");
 });
 
-let sql = 'Select * from Account';
+let sql = 'Select * from Apparel';
 
 app.get('/myaccount', function(req, res) {
    //db.all(sql, [], (err, rows) => {
@@ -177,12 +177,29 @@ app.get('/head', function(req, res) {
 /* START APPAREL ROUTES */
 
 app.get('/apparel', function(req, res){
-   res.render('pages/apparel', { title: 'Apparel' }); 
+   
+	db.all(sql, [], (err, rows) => {
+	
+	if (err) {
+		console.error(err.message);
+	}
+	res.render('pages/apparel', { title: 'Apparel', rows}); 
+	//console.log(rows);
+	
+	});
+});
+
+app.get('/iviews/:id', function(req, res){
+       //econsole.log(req.params.id);
+	db.each("SELECT * FROM Apparel WHERE Apparel_ID = '"+req.params.id+"'",function(err, result){
+		//console.log(result);
+		res.render('pages/iviews', { title: 'Item Views', review: review, result});
+		});
 });
 
 app.get('/midoriyahoodie', function(req, res){
 	db.each("SELECT * FROM Apparel WHERE Apparel_ID = '00009'",function(err, result){
-		console.log(result);
+		//console.log(result);
 		res.render('pages/midoriyahoodie', { title: 'Midoriya Hoodie', review: review, result});
 		});
 
