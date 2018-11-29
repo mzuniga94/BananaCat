@@ -226,7 +226,6 @@ app.post('/login', function(req, res){
 		console.log("Logout successful! myVar = ", myVar);
 		res.end("yes");
 	} else { 
-		console.log("email = "+logEmail+", password = "+logPassword+", myVar = "+myVar);
 		db.each("SELECT * FROM Account WHERE email = '"+logEmail+"' AND password = '"+logPassword+"'",function(err, result){
 
 		myVar = 1;

@@ -15,8 +15,7 @@
     		$.post("http://localhost:8080/login",{inputEmail: logEmail, inputPassword: logPassword},
     		function(data1){
     			if(data1 == "yes"){
-    				alert("Login Successful")
-				window.location.replace("/?");
+					window.location.replace("/?");
     			}
     		});
     	});
@@ -24,8 +23,7 @@
 			$.post("http://localhost:8080/login",{inputEmail: "a", inputPassword: "a"},
     		function(data1){
     			if(data1 == "yes"){
-    				alert("Logout Successful")
-				window.location.replace("/login");	
+					window.location.replace("/login");	
     			}
 			
 		});
