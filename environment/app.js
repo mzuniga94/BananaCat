@@ -262,7 +262,9 @@ app.get('/contactus', function(req, res){
 app.get('/feedback', function(req, res){
    res.render('pages/feedback', { title: 'Feedback'});
 });
+
 var inv1, inv2, inv3;
+
 app.get('/inventory', function(req, res){
 	//res.render('pages/inventory', { title: 'Inventory'});
 	
@@ -285,9 +287,26 @@ app.get('/inventory', function(req, res){
 				' GROUP BY F.figurine_id ORDER BY COUNT (F.figurine_id)', function(err3, result3){
 				
 					inv3 = result3;
-					res.render('pages/inventory', {title: 'Inventory', inv1, inv2, inv3});
 					console.log(result3);
-				});
+			});
+	
+	db.all('SELECT DISTINCT(S.snack_id) AS Snack_ID, S.snack_brand AS Snack_Brand, S.snack_name AS Snack_Name, S.snack_desc AS Snack_Desc, S.snack_price AS Snack_Price, COUNT(DISTINCT(S.snack_id)) AS Snack_Quantity'+
+				' FROM Snack AS S'+
+				' GROUP BY S.snack_id ORDER BY COUNT (S.snack_id)', function(err4, result4){
+				
+				inv4 = result4;
+				console.log(result4);
+			});
+			
+	db.all('SELECT DISTINCT(V.vgame_id) AS Vgame_ID, V.platform AS Platform, V.vgame_name AS Vgame_Name, V.vgame_desc AS Vgame_Desc, V.vgame_price AS Vgame_Price, COUNT(DISTINCT(V.vgame_id)) AS Vgame_Quantity'+
+				' FROM VideoGame AS V'+
+				' GROUP BY V.vgame_id ORDER BY COUNT (V.vgame_id)', function(err5, result5){
+				
+				inv5 = result5;
+				res.render('pages/inventory', {title: 'Inventory', inv1, inv2, inv3,inv4,inv5});
+				console.log(result5);
+			});
+				
 	
 });
 
