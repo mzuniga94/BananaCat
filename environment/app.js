@@ -268,39 +268,39 @@ var inv1, inv2, inv3;
 app.get('/inventory', function(req, res){
 	//res.render('pages/inventory', { title: 'Inventory'});
 	
-	db.all('SELECT DISTINCT(B.book_id) AS Book_ID, B.book_title AS Book_Name, B.author_name AS Book_Author, B.book_price AS Book_Price,COUNT (DISTINCT(B.book_id)) AS Book_Quantity'+
+	db.all('SELECT DISTINCT(B.book_id) AS Book_ID, B.book_title AS Book_Name, B.author_name AS Book_Author, B.book_price AS Book_Price, B.book_quantity AS Book_Quantity'+
 				' FROM Book AS B'+
-				' GROUP BY B.book_id ORDER BY COUNT(B.book_id)', function(err1, result1){
+				' GROUP BY B.book_id ORDER BY B.book_id', function(err1, result1){
 					inv1 = result1;
 					console.log(result1);
 				});
 
-	db.all('SELECT DISTINCT(A.apparel_id) AS Apparel_ID, A.apparel_brand AS Apparel_Brand, A.apparel_name AS Apparel_Name, A.apparel_size AS Apparel_Size, A.apparel_price AS Apparel_Price, COUNT(DISTINCT (A.apparel_id)) AS Apparel_Quantity'+
+	db.all('SELECT DISTINCT(A.apparel_id) AS Apparel_ID, A.apparel_brand AS Apparel_Brand, A.apparel_name AS Apparel_Name, A.apparel_size AS Apparel_Size, A.apparel_price AS Apparel_Price, A.apparel_quantity AS Apparel_Quantity'+
 				' FROM Apparel AS A'+
-				' GROUP BY A.apparel_id ORDER BY COUNT (A.apparel_id)', function(err2, result2){
+				' GROUP BY A.apparel_id ORDER BY A.apparel_id', function(err2, result2){
 				inv2 = result2;
 					console.log(result2);
 				});
 
-	db.all('SELECT DISTINCT(F.figurine_id) AS Figurine_ID, F.figurine_brand AS Figurine_Brand, F.figurine_name AS Figurine_Name, F.figurine_price AS Figurine_Price,COUNT(DISTINCT(F.figurine_id)) AS Figurine_Quantity'+
+	db.all('SELECT DISTINCT(F.figurine_id) AS Figurine_ID, F.figurine_brand AS Figurine_Brand, F.figurine_name AS Figurine_Name, F.figurine_price AS Figurine_Price, F.figurine_quantity AS Figurine_Quantity'+
 				' FROM Figurine AS F'+
-				' GROUP BY F.figurine_id ORDER BY COUNT (F.figurine_id)', function(err3, result3){
+				' GROUP BY F.figurine_id ORDER BY F.figurine_id', function(err3, result3){
 				
 					inv3 = result3;
 					console.log(result3);
 			});
 	
-	db.all('SELECT DISTINCT(S.snack_id) AS Snack_ID, S.snack_brand AS Snack_Brand, S.snack_name AS Snack_Name, S.snack_desc AS Snack_Desc, S.snack_price AS Snack_Price, COUNT(DISTINCT(S.snack_id)) AS Snack_Quantity'+
+	db.all('SELECT DISTINCT(S.snack_id) AS Snack_ID, S.snack_brand AS Snack_Brand, S.snack_name AS Snack_Name, S.snack_desc AS Snack_Desc, S.snack_price AS Snack_Price, S.snack_quantity AS Snack_Quantity'+
 				' FROM Snack AS S'+
-				' GROUP BY S.snack_id ORDER BY COUNT (S.snack_id)', function(err4, result4){
+				' GROUP BY S.snack_id ORDER BY S.snack_id', function(err4, result4){
 				
 				inv4 = result4;
 				console.log(result4);
 			});
 			
-	db.all('SELECT DISTINCT(V.vgame_id) AS Vgame_ID, V.platform AS Platform, V.vgame_name AS Vgame_Name, V.vgame_desc AS Vgame_Desc, V.vgame_price AS Vgame_Price, COUNT(DISTINCT(V.vgame_id)) AS Vgame_Quantity'+
+	db.all('SELECT DISTINCT(V.vgame_id) AS Vgame_ID, V.platform AS Platform, V.vgame_name AS Vgame_Name, V.vgame_desc AS Vgame_Desc, V.vgame_price AS Vgame_Price, V.vgame_quantity AS Vgame_Quantity'+
 				' FROM VideoGame AS V'+
-				' GROUP BY V.vgame_id ORDER BY COUNT (V.vgame_id)', function(err5, result5){
+				' GROUP BY V.vgame_id ORDER BY V.vgame_id', function(err5, result5){
 				
 				inv5 = result5;
 				res.render('pages/inventory', {title: 'Inventory', inv1, inv2, inv3,inv4,inv5});
