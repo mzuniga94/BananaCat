@@ -190,10 +190,18 @@ app.get('/apparel', function(req, res){
 });
 
 app.get('/iviews/:id', function(req, res){
-       //econsole.log(req.params.id);
+       //console.log(req.params.id);
 	db.each("SELECT * FROM Apparel WHERE Apparel_ID = '"+req.params.id+"'",function(err, result){
 		//console.log(result);
 		res.render('pages/iviews', { title: 'Item Views', review: review, result});
+		});
+});
+
+app.get('/iviewsf/:id', function(req, res){
+       //console.log(req.params.id);
+	//db.each("SELECT * FROM Figurine WHERE Figurine_ID = '"+req.params.id+"'",function(err, result){
+		console.log(result);
+		res.render('pages/iviewsf', { title: 'Item Views', review: review, result});
 		});
 });
 
@@ -244,7 +252,16 @@ app.get('/booksandmanga', function(req, res){
 });
 
 app.get('/figurines', function(req, res){
-   res.render('pages/figurines', { title: 'Figurines' });
+   //res.render('pages/figurines', { title: 'Figurines' });
+	db.all('select * from figurine', [], (err, rows) => {
+	
+	if (err) {
+		console.error(err.message);
+	}
+	res.render('pages/figurines', { title: 'Figurines', rows}); 
+	//console.log(rows);
+	
+	});
 });
 
 app.get('/snacks', function(req, res){

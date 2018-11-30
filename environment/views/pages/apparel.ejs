@@ -16,12 +16,12 @@
 
 <div class="container">
     <h1>Popular</h1>
-       <% for( var i = 0; i < 7; i++) { %>
+       <% var len = rows.length; for( var i = 0; i < len; i++) { %>
       <div class="row">
         <div class="col-sm">
           <!-- Card inside the column-->
 
-       <% if(i < 7) { %>
+       <% if(i < len) { %>
             <div class="card" style="width: 21rem; margin-top: 2rem;">
        
                 <img class="card-img-top" style="width: 334px; height: 21rem" src=<%= rows[i].apparel_pic %> alt="Card image cap">
@@ -37,7 +37,7 @@
               </div>
        <% } i++; %>
 
-       <% if(i < 7) { %>
+       <% if(i < len) { %>
               <div class="card" style="width: 21rem; margin-left: 23rem; margin-top: -29rem">
                 <img class="card-img-top" style="width: 334px; height: 21rem" src=<%= rows[i].apparel_pic %> alt="Card image cap">
                 <div class="card-body" style="height: 8rem">
@@ -52,7 +52,7 @@
               </div>
               <% } i++; %>
 
-              <% if(i < 7) { %>
+              <% if(i < len) { %>
 <div class="card" style="width: 21rem; margin-left: 46rem; margin-top: -29rem">
                 <img class="card-img-top" style="width: 334px; height: 21rem" src=<%= rows[i].apparel_pic %> alt="Card image cap">
                 <div class="card-body" style="height: 8rem">
