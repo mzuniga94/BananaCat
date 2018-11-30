@@ -213,6 +213,14 @@ app.get('/iviewsb/:id', function(req, res){
 		});
 });
 
+app.get('/iviewsv/:id', function(req, res){
+       //console.log(req.params.id);
+	db.each("SELECT * FROM VideoGame WHERE vgame_ID = '"+req.params.id+"'",function(err, result){
+		console.log(result);
+		res.render('pages/iviewsv', { title: 'Item Views', review: review, result});
+		});
+});
+
 app.get('/midoriyahoodie', function(req, res){
 	db.each("SELECT * FROM Apparel WHERE Apparel_ID = '00009'",function(err, result){
 		//console.log(result);
@@ -286,7 +294,16 @@ app.get('/snacks', function(req, res){
 });
 
 app.get('/videogames', function(req, res){
-   res.render('pages/videogames', { title: 'Video Games' });
+   //res.render('pages/videogames', { title: 'Video Games' });
+	db.all('select * from VideoGame', [], (err, rows) => {
+	
+	if (err) {
+		console.error(err.message);
+	}
+	res.render('pages/videogames', { title: 'Video Games', rows}); 
+	//console.log(rows);
+	
+	});
 });
 
 app.get('/contactus', function(req, res){
