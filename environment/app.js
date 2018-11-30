@@ -199,9 +199,17 @@ app.get('/iviews/:id', function(req, res){
 
 app.get('/iviewsf/:id', function(req, res){
        //console.log(req.params.id);
-	//db.each("SELECT * FROM Figurine WHERE Figurine_ID = '"+req.params.id+"'",function(err, result){
+	db.each("SELECT * FROM Figurine WHERE Figurine_ID = '"+req.params.id+"'",function(err, result){
 		console.log(result);
 		res.render('pages/iviewsf', { title: 'Item Views', review: review, result});
+		});
+});
+
+app.get('/iviewsb/:id', function(req, res){
+       //console.log(req.params.id);
+	db.each("SELECT * FROM book WHERE book_ID = '"+req.params.id+"'",function(err, result){
+		console.log(result);
+		res.render('pages/iviewsb', { title: 'Item Views', review: review, result});
 		});
 });
 
@@ -248,7 +256,16 @@ app.post('/login', function(req, res){
 
 
 app.get('/booksandmanga', function(req, res){
-   res.render('pages/booksandmanga', { title: 'Books and Manga' });
+   //res.render('pages/booksandmanga', { title: 'Books and Manga' });
+	db.all('select * from Book', [], (err, rows) => {
+	
+	if (err) {
+		console.error(err.message);
+	}
+	res.render('pages/booksandmanga', { title: 'Books and Manga', rows}); 
+	//console.log(rows);
+	
+	});
 });
 
 app.get('/figurines', function(req, res){
