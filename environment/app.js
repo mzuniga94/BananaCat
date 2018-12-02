@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 
 var review = [];
+var rid;
 
 //myVar = is user logged in? boolean
 myVar = 0;
@@ -188,9 +189,11 @@ app.get('/apparel', function(req, res){
 	});
 });
 
+
 app.get('/iviews/:id', function(req, res){
        //console.log(req.params.id);
 	var proc = 0;
+	rid = req.params.id;
 	db.each("SELECT * FROM Apparel WHERE Apparel_ID = '"+req.params.id+"'",function(err, result){
 		//console.log(result);
 		db.all("select * from review where review_id = '"+req.params.id+"'", [], (err, rows) => {
@@ -210,6 +213,7 @@ app.get('/iviews/:id', function(req, res){
 app.get('/iviewsf/:id', function(req, res){
 	var proc = 0;
        //console.log(req.params.id);
+       rid = req.params.id;
 	db.each("SELECT * FROM Figurine WHERE Figurine_ID = '"+req.params.id+"'",function(err, result){
 		console.log(result);
 		db.all("select * from review where review_id = '"+req.params.id+"'", [], (err, rows) => {
@@ -229,6 +233,7 @@ app.get('/iviewsf/:id', function(req, res){
 
 app.get('/iviewsb/:id', function(req, res){
        //console.log(req.params.id);
+       rid = req.params.id;
 	db.each("SELECT * FROM book WHERE book_ID = '"+req.params.id+"'",function(err, result){
 		console.log(result);
 		res.render('pages/iviewsb', { title: 'Item Views', review: review, result});
@@ -237,43 +242,17 @@ app.get('/iviewsb/:id', function(req, res){
 
 app.get('/iviewsv/:id', function(req, res){
        //console.log(req.params.id);
+       rid = req.params.id;
 	db.each("SELECT * FROM VideoGame WHERE vgame_ID = '"+req.params.id+"'",function(err, result){
 		console.log(result);
 		res.render('pages/iviewsv', { title: 'Item Views', review: review, result});
 		});
-});
-
-	var r;
-	var r1;
-	var rid;
-	var review_;
-	
-app.get('/midoriyahoodie', function(req, res){
-
-
-	db.all("SELECT * FROM Apparel WHERE apparel_id = '00009'",function(err, result){
-	
-		rid = '00009';
-		
-		r = result;
-		console.log(result);
-		
-		});
-		
-	db.all("SELECT * FROM Review WHERE review_id = '00009'",function(err1, result1){
-		
-		r1 = result1;
-		console.log(result1);
-		res.render('pages/midoriyahoodie', { title: 'Midoriya Hoodie', r, r1});
-		
-		});
-});
+});	
 
 app.post('/addreview', function(req, res){
 
 	var newReview = req.body.newreview;
 	review.push(newReview);
-	res.redirect('/midoriyahoodie');
 	
 	db.run('INSERT INTO Review(review_id,review_comment)'
 			+'VALUES(?,?)',[rid,newReview],function(err){
