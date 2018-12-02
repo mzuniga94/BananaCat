@@ -71,7 +71,7 @@
 
             <div class="container">Let us know how we're doing, or if there is anything that we can improve!<br><br></div> <!-- Add blurb about how much we value feedback, etc.-->
 
-            <form action="/action_page.php">  
+            <form method="GET" action="mailto:contact.bananacat@gmail.com" enctype="text/plain" > 
               <form>
                 <div class="form-row">
                   <div class="col">
@@ -85,7 +85,6 @@
                 <div class="form-group"> <!-- formated to look like the create an account page, etc. -->
                   <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
                 </div>
-                <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
                 <br>
 
                 <input type="sumbit" value="Submit" class="btn btn-primary btn-lg btn-block"></button> <!-- button styled like the rest of the website -->
@@ -95,6 +94,35 @@
           </div>
 
           </form>
+          <script>
+                var form = document.getElementsByTagName('form')[0];
+                form.addEventListener('submit',contact,false);
+                function contact(e) {
+                    // Prevent Default Form Submission
+                    e.preventDefault();
+
+                    var target = e.target || e.srcElement;
+                    var i = 0;
+                    var message = '';
+
+                    // Loop Through All Input Fields
+                    for(i = 0; i < target.length; ++i) {
+                        // Check to make sure it's a value. Don't need to include Buttons
+                        if(target[i].type != 'text' && target[i].type != 'textarea') {
+                            // Skip to next input since this one doesn't match our rules
+                            continue;
+                        }
+
+                        // Add Input Name and value followed by a line break
+                        message += target[i].name + ': ' + target[i].value + "\r\n";
+                    }
+                    // Modify the hidden body input field that is required for the mailto: scheme
+                    target.elements["body"].value = message;
+
+                    // Submit the form since we previously stopped it. May cause recursive loop in some browsers? Should research this.
+                    this.submit();
+                }
+            </script>
         </div>
 
       </html>
@@ -103,35 +131,7 @@
 
 </html>
 
-    <script>
-        var form = document.getElementsByTagName('form')[0];
-        form.addEventListener('submit',contact,false);
-        function contact(e) {
-          // Prevent Default Form Submission
-          e.preventDefault();
 
-          var target = e.target || e.srcElement;
-          var i = 0;
-          var message = '';
-
-         // Loop Through All Input Fields
-          for(i = 0; i < target.length; ++i) {
-            // Check to make sure it's a value. Don't need to include Buttons
-            if(target[i].type != 'text' && target[i].type != 'textarea') {
-                   // Skip to next input since this one doesn't match our rules
-               continue;
-            }
-
-            // Add Input Name and value followed by a line break
-            message += target[i].name + ': ' + target[i].value + "\r\n";
-         }
-         // Modify the hidden body input field that is required for the mailto: scheme
-         target.elements["body"].value = message;
-
-        // Submit the form since we previously stopped it. May cause recursive loop in some browsers? Should research this.
-         this.submit();
-        }
-    </script>
 
 </main>
 
