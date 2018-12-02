@@ -7,6 +7,24 @@
 
 <header>
     <% include ../partials/header %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+		
+			var rev;
+		
+			$('#submit').click(function(){
+					rev=$('#review1').val();
+					$.post("http://localhost8080/midoriyahoodie",
+				{review1: rev},
+				function(data){
+					if(data == "yes"){
+						window.location.replace("/?");
+					}
+				});
+			});
+		});
+		</script>
 </header>
 
 <main>
@@ -43,22 +61,23 @@
         <button type="button" class="btn btn-primary btn-sm">Wishlist</button>
          <button type="button" class="btn btn-secondary btn-sm">Add to Cart</button>
         <button type="button" class="btn btn-primary btn-sm">View More</button>
-  </center>  
+  </center> 
 <div>
   <center>
         <h2>Reviews:</h2>
-        
         <% for( var i = 0; i < r1.length; i++) { %>
+        				
                   <p><%= r1[i].review_comment %></p>
      		<% } %>
-		
-        <form action='/addreview' method="POST" id="reviewform">
-          <input type="text" name="newreview" placeholder="Add your review">
-          <button>Post</button>
-  </center>
+<div>
+        	<form action='/midoriyahoodie' method="post" id="reviewform">
+          <input type="text" id="review1" placeholder="Add your review">
+          <button type="submit" id="submit">Post</button>
 </div>
-</main>
+  </center>
 
+</main>
+</div>
 <footer>
     <% include ../partials/footer %>
 </footer>

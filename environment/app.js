@@ -220,11 +220,15 @@ app.get('/iviewsv/:id', function(req, res){
 
 	var r;
 	var r1;
+	var rid;
+	var review_;
 	
 app.get('/midoriyahoodie', function(req, res){
 
 
 	db.all("SELECT * FROM Apparel WHERE apparel_id = '00009'",function(err, result){
+	
+		rid = '00009';
 		
 		r = result;
 		console.log(result);
@@ -240,14 +244,18 @@ app.get('/midoriyahoodie', function(req, res){
 		});
 });
 
-app.post('/addreview', function(req, res){
-	var review = req.body.review;
-	var r_id = req.body.r_id;
+app.post('/midoriyahoodie', function(req, res){
+	review_ = req.body.review1;
+	console.log(req.body.review1);
+	db.run('INSERT INTO Review(review_id,review_comment)'
+			+'VALUES(?,?)',[rid,review_],function(err){
+				if(err){
+					return console.log(err.message);
+				}
+			});
+			
+	res.end("yes");
 	
-	db.run('INSERT INTO Review(review_id, review_comment)'+
-			'VALUES(?,?)',[r_id,review]);
-	
-	res.redirect('/midoriyahoodie');
 });
 
 app.get('/login', function(req, res){
