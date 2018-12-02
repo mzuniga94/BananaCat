@@ -314,6 +314,10 @@ app.get('/feedback', function(req, res){
    res.render('pages/feedback', { title: 'Feedback'});
 });
 
+app.get('/shoppingcart', function(req, res){
+	res.render('pages/shoppingcart', {title: 'Shopping Cart'});
+});
+
 var inv1, inv2, inv3;
 
 app.get('/inventory', function(req, res){

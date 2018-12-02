@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<!-- If shopping cart is empty, display this. -->
+<div>
+  <p>Your cart is empty!<br><a href="/">Continue Shopping</a></p>
+</div>
+
+<!-- If shopping cart has at least one product, display this. -->
+<div >
+    <!-- Get image from database or from public folder. -->
+    <!-- If you can't get the image, we can remove the image. -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/CSUF_Titans_Logo.svg/2000px-CSUF_Titans_Logo.svg.png" class="" style="width: 200px; height:200px;" alt="...">
+   <div>
+     <div class="row">
+       <div class="col-md-8">
+         <!-- Product name goes here -->
+           <h4>Product</h4> 
+       </div>
+
+  <div class="col-md-4">
+            <!-- Get quantity of item -->
+            <select>
+              <option value="1" selected="selected">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5+</option>
+          </select>
+          
+          <!-- Get price of item and multiply by quantity -->
+          <span class="">×</span><span class="">$</span>
+
+          </div>
+  <div>
+  <!-- For each product in cart, add together and display subtotal. -->
+  Subtotal: <span>$100000</span>
+  </div>
+
+<div>
+    <a class="btn btn-primary" href="/checkout" role="button">Proceed to Checkout</a>
+</div>
+
+</div>
+<!-- For each product in user shopping cart, create the above HTML -->
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>
