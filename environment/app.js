@@ -3,8 +3,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 
-var review = []; /* For adding a review. Will need a separate table in the database eventually */
-
 //myVar = is user logged in? boolean
 myVar = 0;
 //userVar = when user is logged in all data stored here
@@ -83,8 +81,7 @@ db.serialize(function(){
 		"picture BLOB)");
 															 		
 	db.run("CREATE TABLE IF NOT EXISTS [Review]("+
-		"review_id TEXT NOT NULL PRIMARY KEY,"+
-		"review_item TEXT,"+
+		"review_id TEXT NOT NULL,"+
 		"review_comment TEXT)");
 });
 
@@ -221,25 +218,41 @@ app.get('/iviewsv/:id', function(req, res){
 		});
 });
 
+	var r;
+	var r1;
+	
 app.get('/midoriyahoodie', function(req, res){
-	db.each("SELECT * FROM Apparel WHERE Apparel_ID = '00009'",function(err, result){
-		//console.log(result);
-		res.render('pages/midoriyahoodie', { title: 'Midoriya Hoodie', review: review, result});
-		});
 
+
+	db.all("SELECT * FROM Apparel WHERE apparel_id = '00009'",function(err, result){
+		
+		r = result;
+		console.log(result);
+		
+		});
+		
+	db.all("SELECT * FROM Review WHERE review_id = '00009'",function(err1, result1){
+		
+		r1 = result1;
+		console.log(result1);
+		res.render('pages/midoriyahoodie', { title: 'Midoriya Hoodie', r, r1});
+		
+		});
 });
 
 app.post('/addreview', function(req, res){
-	var newReview = req.body.newreview;
-	review.push(newReview);
+	var review = req.body.review;
+	var r_id = req.body.r_id;
+	
+	db.run('INSERT INTO Review(review_id, review_comment)'+
+			'VALUES(?,?)',[r_id,review]);
+	
 	res.redirect('/midoriyahoodie');
 });
 
 app.get('/login', function(req, res){
    res.render('pages/login', { title: 'Login', myVar });
    
-   
-
 });
 
 app.post('/login', function(req, res){
@@ -257,9 +270,7 @@ app.post('/login', function(req, res){
 		userVar = result;
 		res.end("yes");
 		});
-	}
-		
-		
+	}	
 });
 
 
@@ -318,7 +329,7 @@ app.get('/shoppingcart', function(req, res){
 	res.render('pages/shoppingcart', {title: 'Shopping Cart'});
 });
 
-var inv1, inv2, inv3;
+var inv1, inv2, inv3, inv4, inv5;
 
 app.get('/inventory', function(req, res){
 	//res.render('pages/inventory', { title: 'Inventory'});
@@ -361,8 +372,6 @@ app.get('/inventory', function(req, res){
 				res.render('pages/inventory', {title: 'Inventory', inv1, inv2, inv3,inv4,inv5});
 				console.log(result5);
 			});
-				
-	
 });
 
 // Starts the server!

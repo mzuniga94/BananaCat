@@ -30,12 +30,13 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-
+<div align="left">
 <!-- Please style -->
 
-<h1><%= result.apparel_brand %></h1>
-<h2><%= result.apparel_name %></h2>
-<p>$<%= result.apparel_price %></p>
+<h1><%= r[0].apparel_brand %></h1>
+<h2><%= r[0].apparel_name %></h2>
+<p>$<%= r[0].apparel_price %></p>
+</div>
 <!--<p>Reviews: </p> -->
 
   <center>
@@ -43,17 +44,19 @@
          <button type="button" class="btn btn-secondary btn-sm">Add to Cart</button>
         <button type="button" class="btn btn-primary btn-sm">View More</button>
   </center>  
-
+<div>
   <center>
         <h2>Reviews:</h2>
-        <% review.forEach(function(review){ %>
-            <li><%= review %></li>
-       <%  }); %>
+        
+        <% for( var i = 0; i < r1.length; i++) { %>
+                  <p><%= r1[i].review_comment %></p>
+     		<% } %>
+		
         <form action='/addreview' method="POST" id="reviewform">
           <input type="text" name="newreview" placeholder="Add your review">
           <button>Post</button>
   </center>
-
+</div>
 </main>
 
 <footer>
