@@ -3,6 +3,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 
+var review = [];
+
 //myVar = is user logged in? boolean
 myVar = 0;
 //userVar = when user is logged in all data stored here
@@ -244,11 +246,14 @@ app.get('/midoriyahoodie', function(req, res){
 		});
 });
 
-app.post('/midoriyahoodie', function(req, res){
-	review_ = req.body.review1;
-	console.log(req.body.review1);
+app.post('/addreview', function(req, res){
+
+	var newReview = req.body.newreview;
+	review.push(newReview);
+	res.redirect('/midoriyahoodie');
+	
 	db.run('INSERT INTO Review(review_id,review_comment)'
-			+'VALUES(?,?)',[rid,review_],function(err){
+			+'VALUES(?,?)',[rid,newReview],function(err){
 				if(err){
 					return console.log(err.message);
 				}
