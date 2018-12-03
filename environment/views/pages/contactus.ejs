@@ -95,26 +95,15 @@
                 <p align = "center"> We will contact you shortly to help you with any problems or questions you may have!</p>
             
                 <div class="container">
-                    <form method="GET" action="mailto:contact.bananacat@gmail.com" enctype="text/plain" > 
-                        
-                            <div class="form-row">
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="First name">
-                                </div>
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Last name">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="form-group"> <!-- formated to look like the create an account page, etc. -->
-                                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                            </div>
-                            <br>
-                            <div>Subject</div>
-                            <input type="text" name="subject" />
-
-                            <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block"></button> <!-- button styled like the rest of the website -->
-
+                    <form action="mailto:someone@example.com" method="post" enctype="text/plain">
+                        Name:<br>
+                        <input type="text" name="name"><br>
+                        E-mail:<br>
+                        <input type="text" name="mail"><br>
+                        Comment:<br>
+                        <input type="text" name="comment" size="50"><br><br>
+                        <input type="submit" value="Send">
+                        <input type="reset" value="Reset">
                     </form>
                 </div>
 
