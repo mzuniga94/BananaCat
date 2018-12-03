@@ -49,7 +49,7 @@
   <center>
         <h2>Reviews:</h2>
         <% review.forEach(function(review){ %>
-            <li><%= review %></li>
+            <li><%= review.review_comment %></li>
        <%  }); %>
         <form action='/addreview' method="POST" id="reviewform">
           <input type="text" name="newreview" placeholder="Add your review">

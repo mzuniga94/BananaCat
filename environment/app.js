@@ -215,7 +215,7 @@ app.get('/iviewsf/:id', function(req, res){
        //console.log(req.params.id);
        rid = req.params.id;
 	db.each("SELECT * FROM Figurine WHERE Figurine_ID = '"+req.params.id+"'",function(err, result){
-		console.log(result);
+		//console.log(result);
 		db.all("select * from review where review_id = '"+req.params.id+"'", [], (err, rows) => {
 			if (err) {
 				console.error(err.message);
@@ -227,25 +227,46 @@ app.get('/iviewsf/:id', function(req, res){
 		if(proc) {
 			res.render('pages/iviewsf', { title: 'Item Views', review: review, result});
 		}
-		//res.render('pages/iviewsf', { title: 'Item Views', review: review, result});
 	});
 });
 
 app.get('/iviewsb/:id', function(req, res){
        //console.log(req.params.id);
+       var proc = 0;
        rid = req.params.id;
 	db.each("SELECT * FROM book WHERE book_ID = '"+req.params.id+"'",function(err, result){
-		console.log(result);
+		//console.log(result);
+              db.all("select * from review where review_id = '"+req.params.id+"'", [], (err, rows) => {
+			if (err) {
+				console.error(err.message);
+			}
+			res.render('pages/iviewsb', { title: 'Item Views', review: rows, result}); 
+			//onsole.log(rows);
+			proc++;
+		});
+		if(proc) {
 		res.render('pages/iviewsb', { title: 'Item Views', review: review, result});
+		}
 		});
 });
 
 app.get('/iviewsv/:id', function(req, res){
        //console.log(req.params.id);
+       var proc = 0;
        rid = req.params.id;
 	db.each("SELECT * FROM VideoGame WHERE vgame_ID = '"+req.params.id+"'",function(err, result){
-		console.log(result);
-		res.render('pages/iviewsv', { title: 'Item Views', review: review, result});
+		//console.log(result);
+              db.all("select * from review where review_id = '"+req.params.id+"'", [], (err, rows) => {
+			if (err) {
+				console.error(err.message);
+			}
+			res.render('pages/iviewsv', { title: 'Item Views', review: rows, result}); 
+			//onsole.log(rows);
+			proc++;
+		});
+		if(proc) {
+		       res.render('pages/iviewsv', { title: 'Item Views', review: review, result});
+		}
 		});
 });	
 
