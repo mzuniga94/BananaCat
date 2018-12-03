@@ -94,40 +94,34 @@
                 <p align="center">Please fill in all fields</p>
             
                 <div class="container">
-                    <form method="GET" action="mailto:contact.bananacat@gmail.com" enctype="text/plain" >
-                        <form>
-                            <label for="fname">First Name</label>
-                            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                    <form method="GET" action="mailto:contact.bananacat@gmail.com" enctype="text/plain" > 
+                        
+                            <div class="form-row">
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="First name">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Last name">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group"> <!-- formated to look like the create an account page, etc. -->
+                                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                            </div>
+                            <br>
 
-                            <label for="lname">Last Name</label>
-                            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-
-                            <label for="email">Your Email</label>
-                            <input type="text" id="email" name="youremail" placeholder="Your email..">
-    
-    
-                            <label for="Reason">Reason for Inquiry</label>
-                            <select id="Reason" name="Subject">
-                                <option value="Sales">Sales Inquiry</option>
-                                <option value="Customer">Customer Support</option>
-                                <option value="international">International Sales</option>
-                            </select>
-                            
-                         </form>
-                        <form>
-
-                            <input type="submit" value="Submit">
-                            
-                        </form>
+                            <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block"></button> <!-- button styled like the rest of the website -->
 
                     </form>
-                    
+                </div>
+
+                
                     <script>
                         var form = document.getElementsByTagName('form')[0];
                         form.addEventListener('submit',contact,false);
                         function contact(e) {
-                            // Prevent Default Form Submission
-                            e.preventDefault();
+                        // Prevent Default Form Submission
+                             e.preventDefault();
 
                             var target = e.target || e.srcElement;
                             var i = 0;
@@ -137,21 +131,20 @@
                             for(i = 0; i < target.length; ++i) {
                                 // Check to make sure it's a value. Don't need to include Buttons
                                 if(target[i].type != 'text' && target[i].type != 'textarea') {
-                                 // Skip to next input since this one doesn't match our rules
+                                    // Skip to next input since this one doesn't match our rules
                                     continue;
                                 }
 
                                 // Add Input Name and value followed by a line break
-                                 message += target[i].name + ': ' + target[i].value + "\r\n";
+                                message += target[i].name + ': ' + target[i].value + "\r\n";
                             }
                             // Modify the hidden body input field that is required for the mailto: scheme
                             target.elements["body"].value = message;
 
                             // Submit the form since we previously stopped it. May cause recursive loop in some browsers? Should research this.
                             this.submit();
-                        }
-                        
-                    </script>
+                         }
+                </script>
                 </div>
             </div>
         
