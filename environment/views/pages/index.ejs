@@ -79,59 +79,112 @@
     </div>
 
     <div class="container bg-light text-black">
-      <h2>Recommended</h2>
+      <h2>Recently Added</h2>
       <div class="row">
         <div class="col-sm">
           <!-- Card inside the column-->
-          <div class="card" style="width: 21rem;">
-            <img class="card-img-top d-block w-85 h-90" src="https://i.kym-cdn.com/photos/images/original/001/238/535/180.jpg"
-              alt="Card image cap">
-            <div class="card-body">
-              <h6>Miraculous Ladybug - Ladybug</h6>
-              <!--Buttons-->
-              <center>
-                <button type="button" class="btn btn-secondary btn-sm">Wishlist</button>
-                <button type="button" class="btn btn-warning btn-sm">Add to Cart</button>
-                <button type="button" class="btn btn-secondary btn-sm">View More</button>
-              </center>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm">
-          <!-- Card inside the column-->
-          <div class="card" style="width: 21rem;">
-            <!--Product Image-->
-            <img class="card-img-top d-block w-85 h-90" src="https://i.kym-cdn.com/photos/images/original/001/241/002/b78.jpg"
-              alt="Card image cap">
-            <div class="card-body">
-              <!--Product Name-->
-              <h6>Miraculous Ladybug - Chat Noir</h6>
-              <!--Buttons-->
-              <center>
-                <button type="button" class="btn btn-secondary btn-sm">Wishlist</button>
-                <button type="button" class="btn btn-warning btn-sm">Add to Cart</button>
-                <button type="button" class="btn btn-secondary btn-sm">View More</button>
-              </center>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm">
-          <!-- Card inside the column-->
-          <div class="card" style="width: 21rem;">
-            <img class="card-img-top d-block w-85 h-90" src="https://i.ebayimg.com/images/g/9c4AAOSwAllbbVes/s-l640.jpg"
-              alt="Card image cap">
-            <div class="card-body">
-              <h6>Nendoroid - Megumi</h6>
-              <center>
-                <button type="button" class="btn btn-secondary btn-sm">Wishlist</button>
-                <button type="button" class="btn btn-warning btn-sm">Add to Cart</button>
-                <button type="button" class="btn btn-secondary btn-sm">View More</button>
-              </center>
-            </div>
-          </div>
-          <p align="right"><a href="#">Browse more recommendations >></a></p>
-        </div> <!-- End of columns-->
+          <div class="card">
+            <%  randn = Math.floor(Math.random() * 100); if((randn % 4) === 0) { %>
 
+            <img class="card-img-top d-block w-85 h-90" src=<%= row1[randn % row1.length].apparel_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row1[randn % row1.length].apparel_name %> - <%= row1[randn % row1.length].apparel_brand %></h6>
+
+	<% } else if((randn % 4) === 1){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row2[randn % row2.length].book_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row2[randn % row2.length].book_title %> - <%= row2[randn % row2.length].author_name %></h6>
+	<% } else if((randn % 4) === 2){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row3[randn % row3.length].figurine_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row3[randn % row3.length].figurine_name %> - <%= row3[randn % row3.length].figurine_brand %></h6>
+	<% } else if((randn % 4) === 3){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row4[randn % row4.length].vgame_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row4[randn % row4.length].vgame_name %> - <%= row4[randn % row4.length].platform %></h6>
+	<% } %> 
+              <center>
+                <button type="button" class="btn btn-secondary btn-sm">Wishlist</button>
+                <button type="button" class="btn btn-warning btn-sm">Add to Cart</button>
+                <button type="button" class="btn btn-secondary btn-sm">View More</button>
+              </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <!-- Card inside the column-->
+          <div class="card">
+            <!--Product Image-->
+            <%  randn = Math.floor(Math.random() * 100); if((randn % 4) === 0) { %>
+
+            <img class="card-img-top d-block w-85 h-90" src=<%= row1[randn % row1.length].apparel_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row1[randn % row1.length].apparel_name %> - <%= row1[randn % row1.length].apparel_brand %></h6>
+
+	<% } else if((randn % 4) === 1){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row2[randn % row2.length].book_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row2[randn % row2.length].book_title %> - <%= row2[randn % row2.length].author_name %></h6>
+	<% } else if((randn % 4) === 2){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row3[randn % row3.length].figurine_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row3[randn % row3.length].figurine_name %> - <%= row3[randn % row3.length].figurine_brand %></h6>
+	<% } else if((randn % 4) === 3){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row4[randn % row4.length].vgame_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row4[randn % row4.length].vgame_name %> - <%= row4[randn % row4.length].platform %></h6>
+	<% } %> 
+              <center>
+                <button type="button" class="btn btn-secondary btn-sm">Wishlist</button>
+                <button type="button" class="btn btn-warning btn-sm">Add to Cart</button>
+                <button type="button" class="btn btn-secondary btn-sm">View More</button>
+              </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <!-- Card inside the column-->
+          <div class="card">
+            <%  randn = Math.floor(Math.random() * 100); if((randn % 4) === 0) { %>
+
+            <img class="card-img-top d-block w-85 h-90" src=<%= row1[randn % row1.length].apparel_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row1[randn % row1.length].apparel_name %> - <%= row1[randn % row1.length].apparel_brand %></h6>
+
+	<% } else if((randn % 4) === 1){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row2[randn % row2.length].book_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row2[randn % row2.length].book_title %> - <%= row2[randn % row2.length].author_name %></h6>
+	<% } else if((randn % 4) === 2){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row3[randn % row3.length].figurine_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row3[randn % row3.length].figurine_name %> - <%= row3[randn % row3.length].figurine_brand %></h6>
+	<% } else if((randn % 4) === 3){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row4[randn % row4.length].vgame_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row4[randn % row4.length].vgame_name %> - <%= row4[randn % row4.length].platform %></h6>
+	<% } %> 
+              <center>
+                <button type="button" class="btn btn-secondary btn-sm">Wishlist</button>
+                <button type="button" class="btn btn-warning btn-sm">Add to Cart</button>
+                <button type="button" class="btn btn-secondary btn-sm">View More</button>
+              </center>
+            </div>
+          </div>
+          <p align="right"><a href="#">Browse Recently Added >></a></p>
+        </div> <!-- End of columns-->
       </div>
     </div>
 
@@ -147,10 +200,29 @@
         <div class="col-sm">
           <!-- Card inside the column-->
           <div class="card">
-            <img class="card-img-top d-block w-85 h-90" src="https://www.nendoworld.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/t/o/touken-ranbu-online-nendoroid-action-figure-okurikara-10-cm_1_.jpg"
+            <%  randn = Math.floor(Math.random() * 100); if((randn % 4) === 0) { %>
+
+            <img class="card-img-top d-block w-85 h-90" src=<%= row1[randn % row1.length].apparel_pic %>
               alt="Card image cap">
             <div class="card-body">
-              <h6>Nendoroid - Random Anime Guy</h6>
+              <h6><%= row1[randn % row1.length].apparel_name %> - <%= row1[randn % row1.length].apparel_brand %></h6>
+
+	<% } else if((randn % 4) === 1){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row2[randn % row2.length].book_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row2[randn % row2.length].book_title %> - <%= row2[randn % row2.length].author_name %></h6>
+	<% } else if((randn % 4) === 2){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row3[randn % row3.length].figurine_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row3[randn % row3.length].figurine_name %> - <%= row3[randn % row3.length].figurine_brand %></h6>
+	<% } else if((randn % 4) === 3){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row4[randn % row4.length].vgame_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row4[randn % row4.length].vgame_name %> - <%= row4[randn % row4.length].platform %></h6>
+	<% } %> 
               <center>
                 <button type="button" class="btn btn-secondary btn-sm">Wishlist</button>
                 <button type="button" class="btn btn-warning btn-sm">Add to Cart</button>
@@ -163,11 +235,29 @@
           <!-- Card inside the column-->
           <div class="card">
             <!--Product Image-->
-            <img class="card-img-top d-block w-85 h-90" src="https://i.ebayimg.com/images/g/BzMAAOSwNnRYliCo/s-l640.jpg"
+            <%  randn = Math.floor(Math.random() * 100); if((randn % 4) === 0) { %>
+
+            <img class="card-img-top d-block w-85 h-90" src=<%= row1[randn % row1.length].apparel_pic %>
               alt="Card image cap">
             <div class="card-body">
-              <!--Product Name-->
-              <h6>Nendoriod - Halloween Miku</h6>
+              <h6><%= row1[randn % row1.length].apparel_name %> - <%= row1[randn % row1.length].apparel_brand %></h6>
+
+	<% } else if((randn % 4) === 1){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row2[randn % row2.length].book_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row2[randn % row2.length].book_title %> - <%= row2[randn % row2.length].author_name %></h6>
+	<% } else if((randn % 4) === 2){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row3[randn % row3.length].figurine_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row3[randn % row3.length].figurine_name %> - <%= row3[randn % row3.length].figurine_brand %></h6>
+	<% } else if((randn % 4) === 3){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row4[randn % row4.length].vgame_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row4[randn % row4.length].vgame_name %> - <%= row4[randn % row4.length].platform %></h6>
+	<% } %> 
               <center>
                 <button type="button" class="btn btn-secondary btn-sm">Wishlist</button>
                 <button type="button" class="btn btn-warning btn-sm">Add to Cart</button>
@@ -179,10 +269,29 @@
         <div class="col-sm">
           <!-- Card inside the column-->
           <div class="card">
-            <img class="card-img-top d-block w-85 h-90" src="https://na.merch.riotgames.com/media/catalog/product/a/h/ahri_pose1_nobase.png"
+            <%  randn = Math.floor(Math.random() * 100); if((randn % 4) === 0) { %>
+
+            <img class="card-img-top d-block w-85 h-90" src=<%= row1[randn % row1.length].apparel_pic %>
               alt="Card image cap">
             <div class="card-body">
-              <h6>Nendoroid - Ahri</h6>
+              <h6><%= row1[randn % row1.length].apparel_name %> - <%= row1[randn % row1.length].apparel_brand %></h6>
+
+	<% } else if((randn % 4) === 1){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row2[randn % row2.length].book_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row2[randn % row2.length].book_title %> - <%= row2[randn % row2.length].author_name %></h6>
+	<% } else if((randn % 4) === 2){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row3[randn % row3.length].figurine_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row3[randn % row3.length].figurine_name %> - <%= row3[randn % row3.length].figurine_brand %></h6>
+	<% } else if((randn % 4) === 3){ %> 
+	<img class="card-img-top d-block w-85 h-90" src=<%= row4[randn % row4.length].vgame_pic %>
+              alt="Card image cap">
+            <div class="card-body">
+              <h6><%= row4[randn % row4.length].vgame_name %> - <%= row4[randn % row4.length].platform %></h6>
+	<% } %> 
               <center>
                 <button type="button" class="btn btn-secondary btn-sm">Wishlist</button>
                 <button type="button" class="btn btn-warning btn-sm">Add to Cart</button>

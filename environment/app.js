@@ -122,7 +122,16 @@ app.use(bodyParser.json());
 
 // Renders the home/index page.
 app.get('/', function(req, res) {
-  res.render('pages/index', {title: 'BananaCat'});
+  //res.render('pages/index', {title: 'BananaCat'});
+       db.all("select * from apparel", [], (err, row1) => {
+			db.all("select * from book", [], (err, row2) => {
+		              db.all("select * from figurine", [], (err, row3) => {
+			                db.all("select * from videogame", [], (err, row4) => {
+			                     res.render('pages/index', {title: 'BananaCat', row1, row2, row3, row4});
+		              });
+		              });	
+		       });
+	});
 });
 
 app.get('/register', function(req, res) {
