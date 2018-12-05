@@ -378,6 +378,10 @@ app.get('/checkoutform', function(req, res){
 	res.render('pages/checkoutform', {title: 'Checkout'});
 });
 
+app.get('/purchase_confirmation', function(req, res){
+	res.render('pages/purchase_confirmation', {title: 'Purchase Confrimation'});
+});
+
 var inv1, inv2, inv3, inv4, inv5;
 
 app.get('/inventory', function(req, res){
