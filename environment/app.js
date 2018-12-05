@@ -219,6 +219,26 @@ app.get('/iviews/:id', function(req, res){
 	});
 });
 
+app.get('/iviewss/:id', function(req, res){
+       //console.log(req.params.id);
+	var proc = 0;
+	rid = req.params.id;
+	db.each("SELECT * FROM snack WHERE snack_id = '"+req.params.id+"'",function(err, result){
+		//console.log(result);
+		db.all("select * from review where review_id = '"+req.params.id+"'", [], (err, rows) => {
+			if (err) {
+				console.error(err.message);
+			}
+			res.render('pages/iviewss', { title: 'Item Views',review: rows, result}); 
+			//onsole.log(rows);
+			proc--;
+		});
+		if(proc) {
+			res.render('pages/iviewss', { title: 'Item Views', review: review, result});
+		}
+	});
+});
+
 app.get('/iviewsf/:id', function(req, res){
 	var proc = 0;
        //console.log(req.params.id);
@@ -346,7 +366,16 @@ app.get('/figurines', function(req, res){
 });
 
 app.get('/snacks', function(req, res){
-   res.render('pages/snacks', { title: 'Snacks' });
+   //res.render('pages/snacks', { title: 'Snacks' });
+	db.all('select * from snack', [], (err, rows) => {
+	
+	if (err) {
+		console.error(err.message);
+	}
+	res.render('pages/snacks', { title: 'Snacks', rows}); 
+	//console.log(rows);
+	
+	});
 });
 
 app.get('/videogames', function(req, res){
