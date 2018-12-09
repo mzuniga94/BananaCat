@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %> <!-- Including partials/head -->
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<img src="https://cdn.shopify.com/s/files/1/2476/1136/products/POH166-1_740x.jpg?v=1542706319">
+
+<form action="/addtocart" method="POST">
+    <input type="text" name="quantity" placeholder="Enter Quantity"/>
+    <input type="hidden" name="product" value="Midoriya Hoodie">
+    <input type="hidden" name="price" value="15">
+    <input type="submit" value="Add to Cart"/>
+</form>
+
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>

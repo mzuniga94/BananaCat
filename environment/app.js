@@ -6,6 +6,9 @@ var path = require('path');
 var review = [];
 var rid;
 
+var cart = [];
+var price = [];
+
 //myVar = is user logged in? boolean
 myVar = 0;
 //userVar = when user is logged in all data stored here
@@ -315,6 +318,21 @@ app.post('/addreview', function(req, res){
 	
 });
 
+app.post('/addtocart', function(req, res){	
+	var a = req.body.product;
+	var b = req.body.price;
+	cart.push(a);
+	price.push(b);	
+	console.log(a);	
+	console.log(b);
+	res.redirect('/shoppingcart/:a/:b');
+});
+
+app.get('/test', function(req, res){
+	res.render('pages/test', {title: 'Test'});
+});
+
+
 app.get('/login', function(req, res){
    res.render('pages/login', { title: 'Login', myVar });
    
@@ -399,8 +417,10 @@ app.get('/feedback', function(req, res){
    res.render('pages/feedback', { title: 'Feedback'});
 });
 
-app.get('/shoppingcart', function(req, res){
-	res.render('pages/shoppingcart', {title: 'Shopping Cart'});
+app.get('/shoppingcart/:a/:b', function(req, res){
+	var a = req.body.a;
+	var b = req.body.b;
+	res.render('pages/shoppingcart', {title: 'Shopping Cart', subtotal: b});
 });
 
 app.get('/checkoutform', function(req, res){
