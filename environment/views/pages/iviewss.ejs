@@ -17,10 +17,10 @@
     <div id="midoriyaHoodie" class="carousel slide" data-ride="carousel" style="width: 400px; height: 400px;">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" style="width: 400px; height: 400px;" src=<%= result.figurine_pic %> alt="Midoriya Hoodie">
+      <img class="d-block w-100" style="width: 400px; height: 400px;" src=<%= result.snack_pic %> alt="Midoriya Hoodie">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" style="width: 400px; height: 400px;" src=<%= result.figurine_pic2 %> alt="Midoriya Hoodie">
+      <img class="d-block w-100" style="width: 400px; height: 400px;" src=<%= result.snack_pic2 %> alt="Midoriya Hoodie">
     </div>
   </div>
   <a class="carousel-control-prev" href="#midoriyaHoodie" role="button" data-slide="prev">
@@ -35,14 +35,14 @@
 
 <!-- Please style -->
 
-<h1><%= result.figurine_brand %></h1>
-<h2><%= result.figurine_name %></h2>
-<p>$<%= result.figurine_price %></p>
+<h1><%= result.snack_brand %></h1>
+<h2><%= result.snack_name %></h2>
+<p>$<%= result.snack_price %></p>
 <!--<p>Reviews: </p> -->
 
   <center>
         <button type="button" class="btn btn-primary btn-sm">Wishlist</button>
-         <a class="btn btn-primary" href=/addtocart/<%= result.figurine_id %>/2 role="button">Add to Cart</a>
+         <a class="btn btn-primary" href=/addtocart/<%= result.snack_id %>/3 role="button">Add to Cart</a>
         <button type="button" class="btn btn-primary btn-sm">View More</button>
   </center>  
 

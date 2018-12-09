@@ -8,7 +8,7 @@
 <header>
     <% include ../partials/header %>
 </header>
-
+	<% if(types.length === 0) { %>
 <!-- If shopping cart is empty, display this. -->
         <div class="jumbotron">
             <h1 class="display-4">Uh-oh!</h1>
@@ -16,20 +16,49 @@
             <hr class="my-4">
             <p>Why don't we fix that...</p>
             <p class="lead">
-                <a class="btn btn-warning btn-lg" href="#" role="button">Continue Shopping</a>
+                <a class="btn btn-warning btn-lg" href="/" role="button">Continue Shopping</a>
             </p>
         </div>
-        
+	<% } else { %>
 <!-- If shopping cart has at least one product, display this. -->
 <div >
     <!-- Get image from database or from public folder. -->
     <!-- If you can't get the image, we can remove the image. -->
-    <img src="https://cdn.shopify.com/s/files/1/2476/1136/products/POH166-1_740x.jpg?v=1542706319" class="" style="width: 200px; height:200px;" alt="...">
+	<% for(var i = 0; i < types.length; i++) { %>
+	<% if(types[i] === '0') { %>
+    <img src=<%= cartv[i][0].apparel_pic %> class="" style="width: 200px; height:200px;" alt="...">
+	<% } %>
+	<% if(types[i] === '1') { %>
+    <img src=<%= cartv[i][0].book_pic %> class="" style="width: 200px; height:200px;" alt="...">
+	<% } %>
+	<% if(types[i] === '2') { %>
+    <img src=<%= cartv[i][0].figurine_pic %> class="" style="width: 200px; height:200px;" alt="...">
+	<% } %>
+	<% if(types[i] === '3') { %>
+    <img src=<%= cartv[i][0].snack_pic %> class="" style="width: 200px; height:200px;" alt="...">
+	<% } %>
+	<% if(types[i] === '4') { %>
+    <img src=<%= cartv[i][0].vgame_pic %> class="" style="width: 200px; height:200px;" alt="...">
+	<% } %>
    <div>
      <div class="row">
        <div class="col-md-8">
          <!-- Product name goes here -->
-           <h4>Product</h4> 
+	<% if(types[i] === '0') { %>
+           <h4><%= cartv[i][0].apparel_name %> - <%= cartv[i][0].apparel_brand %></h4> 
+	<% } %>
+	<% if(types[i] === '1') { %>
+           <h4><%= cartv[i][0].book_title %></h4> 
+	<% } %>
+	<% if(types[i] === '2') { %>
+           <h4><%= cartv[i][0].figurine_name %> - <%= cartv[i][0].figurine_brand %></h4> 
+	<% } %>
+	<% if(types[i] === '3') { %>
+           <h4><%= cartv[i][0].snack_name %> - <%= cartv[i][0].snack_brand %></h4> 
+	<% } %>
+	<% if(types[i] === '4') { %>
+           <h4><%= cartv[i][0].vgame_name %></h4> 
+	<% } %>
        </div>
 
   <div class="col-md-4">
@@ -49,16 +78,30 @@
   <div>
 
   <!-- For each product in cart, add together and display subtotal. -->
-  Subtotal: <span>$15.00</span>
+	<% if(types[i] === '0') { %>
+  Price: <span>$<%= cartv[i][0].apparel_price %></span>
+	<% } %>
+	<% if(types[i] === '1') { %>
+  Price: <span>$<%= cartv[i][0].book_price %></span>
+	<% } %>
+	<% if(types[i] === '2') { %>
+  Price: <span>$<%= cartv[i][0].figurine_price %></span>
+	<% } %>
+	<% if(types[i] === '4') { %>
+  Price: <span>$<%= cartv[i][0].vgame_price %></span>
+	<% } %>
+	<% if(types[i] === '3') { %>
+  Price: <span>$<%= cartv[i][0].snack_price %></span>
+	<% } %>
   </div>
 
 </div>
 <!-- For each product in user shopping cart, create the above HTML -->
-
+<% } %>
 <div>
     <a class="btn btn-primary" href="/checkoutform" role="button">Proceed to Checkout</a>
 </div>
-
+<% } %>
 <footer>
     <% include ../partials/footer %>
 </footer>

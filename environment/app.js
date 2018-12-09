@@ -6,6 +6,10 @@ var path = require('path');
 var review = [];
 var rid;
 
+var cartid = [];
+var carttype = [];
+var cartvar = [];
+
 var cart = [];
 var price = [];
 
@@ -318,14 +322,72 @@ app.post('/addreview', function(req, res){
 	
 });
 
+app.get('/addtocart/:id/:type', function(req, res){	
+	var c = req.params.id;
+	var d = req.params.type;
+	cartid.push(c);
+	carttype.push(d);
+	
+
+	//console.log(c);
+	if(d === '0') {
+	db.all("select * from apparel where apparel_id = '"+req.params.id+"'", [], (err, rows) => {
+			if (err) {
+				console.error(err.message);
+			}
+			cartvar.push(rows);
+			res.redirect('/shoppingcart');
+		});
+	} else if(d === '1') {
+	db.all("select * from book where book_id = '"+req.params.id+"'", [], (err, rows) => {
+			if (err) {
+				console.error(err.message);
+			}
+			cartvar.push(rows);
+			res.redirect('/shoppingcart');
+		});
+	} else if(d === '2') {
+	db.all("select * from figurine where figurine_id = '"+req.params.id+"'", [], (err, rows) => {
+			if (err) {
+				console.error(err.message);
+			}
+			cartvar.push(rows);
+			res.redirect('/shoppingcart');
+		});
+	} else if(d === '3') {
+	db.all("select * from snack where snack_id = '"+req.params.id+"'", [], (err, rows) => {
+			if (err) {
+				console.error(err.message);
+			}
+			cartvar.push(rows);
+			res.redirect('/shoppingcart');
+		});
+	} else if(d === '4') {
+	db.all("select * from videogame where vgame_id = '"+req.params.id+"'", [], (err, rows) => {
+			if (err) {
+				console.error(err.message);
+			}
+			cartvar.push(rows);
+			res.redirect('/shoppingcart');
+		});
+	}
+
+
+	//res.redirect('/shoppingcart/:c/:d');
+});
+
+
 app.post('/addtocart', function(req, res){	
-	var a = req.body.product;
-	var b = req.body.price;
+	
+
+
+	var a = req.param.product;
+	var b = req.param.price;
 	cart.push(a);
 	price.push(b);	
 	console.log(a);	
 	console.log(b);
-	res.redirect('/shoppingcart/:a/:b');
+	res.redirect('/shoppingcart/:c/:d');
 });
 
 app.get('/test', function(req, res){
@@ -417,10 +479,10 @@ app.get('/feedback', function(req, res){
    res.render('pages/feedback', { title: 'Feedback'});
 });
 
-app.get('/shoppingcart/:a/:b', function(req, res){
-	var a = req.body.a;
-	var b = req.body.b;
-	res.render('pages/shoppingcart', {title: 'Shopping Cart', subtotal: b});
+app.get('/shoppingcart', function(req, res){
+	//var a = req.body.a;
+	//var b = req.body.b;
+	res.render('pages/shoppingcart', {title: 'Shopping Cart', ids: cartid, types: carttype, cartv: cartvar});
 });
 
 app.get('/checkoutform', function(req, res){
