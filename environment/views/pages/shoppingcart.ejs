@@ -9,7 +9,22 @@
     <% include ../partials/header %>
 </header>
 
- <div class="container bg-secondary text-black">
+ 
+
+<% if(types.length === 0) { %>
+<!-- If shopping cart is empty, display this. -->
+        <div class="jumbotron">
+            <h1 class="display-4">Uh-oh!</h1>
+            <p class="lead">It appears that you do not have anything in your shopping cart.</p>
+            <hr class="my-4">
+            <p>Why don't we fix that...</p>
+            <p class="lead">
+                <a class="btn btn-warning btn-lg" href="/" role="button">Continue Shopping</a>
+            </p>
+        </div>
+  <% } else { %>
+	<% for(var i = 0; i < types.length; i++) { %>
+<div class="container bg-secondary text-black">
 
         <!-- Wraps around the main body, bg-info-->
 
@@ -24,26 +39,13 @@
         </div>
 
 <div class="container bg-light text-black">
-
-<% if(types.length === 0) { %>
-<!-- If shopping cart is empty, display this. -->
-        <div class="jumbotron">
-            <h1 class="display-4">Uh-oh!</h1>
-            <p class="lead">It appears that you do not have anything in your shopping cart.</p>
-            <hr class="my-4">
-            <p>Why don't we fix that...</p>
-            <p class="lead">
-                <a class="btn btn-warning btn-lg" href="/" role="button">Continue Shopping</a>
-            </p>
-        </div>
-  <% } else { %>
 <!-- If shopping cart has at least one product, display this. -->
 <div class="container bg-light text-black">
     <br>
     <!-- Get image from database or from public folder. -->
     <!-- If you can't get the image, we can remove the image. -->
     <div class="media">
-                      <% for(var i = 0; i < types.length; i++) { %>
+                      
                       <% if(types[i] === '0') { %>
                         <img src=<%= cartv[i][0].apparel_pic %> class="" style="width: 100px; height:100px;" alt="...">
                       <% } %>
@@ -166,7 +168,7 @@
     </div>
 <!-- For each product in user shopping cart, create the above HTML -->
 <% } %>
-<% } %>
+
 
 
         <!-- For each product in user shopping cart, create the above HTML -->
@@ -231,6 +233,7 @@
             <hr>
 
         </div>
+<% } %>
 <footer>
     <% include ../partials/footer %>
 </footer>
