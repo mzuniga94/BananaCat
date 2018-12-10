@@ -8,7 +8,24 @@
 <header>
     <% include ../partials/header %>
 </header>
-	<% if(types.length === 0) { %>
+
+ <div class="container bg-secondary text-black">
+
+        <!-- Wraps around the main body, bg-info-->
+
+        <div class="container bg-secondary text-black">
+
+            <br>
+
+            <br>
+
+            <br>
+
+        </div>
+
+<div class="container bg-light text-black">
+
+<% if(types.length === 0) { %>
 <!-- If shopping cart is empty, display this. -->
         <div class="jumbotron">
             <h1 class="display-4">Uh-oh!</h1>
@@ -19,89 +36,198 @@
                 <a class="btn btn-warning btn-lg" href="/" role="button">Continue Shopping</a>
             </p>
         </div>
-	<% } else { %>
+  <% } else { %>
 <!-- If shopping cart has at least one product, display this. -->
-<div >
+<div class>
     <!-- Get image from database or from public folder. -->
     <!-- If you can't get the image, we can remove the image. -->
-	<% for(var i = 0; i < types.length; i++) { %>
-	<% if(types[i] === '0') { %>
-    <img src=<%= cartv[i][0].apparel_pic %> class="" style="width: 200px; height:200px;" alt="...">
-	<% } %>
-	<% if(types[i] === '1') { %>
-    <img src=<%= cartv[i][0].book_pic %> class="" style="width: 200px; height:200px;" alt="...">
-	<% } %>
-	<% if(types[i] === '2') { %>
-    <img src=<%= cartv[i][0].figurine_pic %> class="" style="width: 200px; height:200px;" alt="...">
-	<% } %>
-	<% if(types[i] === '3') { %>
-    <img src=<%= cartv[i][0].snack_pic %> class="" style="width: 200px; height:200px;" alt="...">
-	<% } %>
-	<% if(types[i] === '4') { %>
-    <img src=<%= cartv[i][0].vgame_pic %> class="" style="width: 200px; height:200px;" alt="...">
-	<% } %>
-   <div>
-     <div class="row">
-       <div class="col-md-8">
-         <!-- Product name goes here -->
-	<% if(types[i] === '0') { %>
-           <h4><%= cartv[i][0].apparel_name %> - <%= cartv[i][0].apparel_brand %></h4> 
-	<% } %>
-	<% if(types[i] === '1') { %>
-           <h4><%= cartv[i][0].book_title %></h4> 
-	<% } %>
-	<% if(types[i] === '2') { %>
-           <h4><%= cartv[i][0].figurine_name %> - <%= cartv[i][0].figurine_brand %></h4> 
-	<% } %>
-	<% if(types[i] === '3') { %>
-           <h4><%= cartv[i][0].snack_name %> - <%= cartv[i][0].snack_brand %></h4> 
-	<% } %>
-	<% if(types[i] === '4') { %>
-           <h4><%= cartv[i][0].vgame_name %></h4> 
-	<% } %>
-       </div>
+                      <% for(var i = 0; i < types.length; i++) { %>
+                      <% if(types[i] === '0') { %>
+                        <img src=<%= cartv[i][0].apparel_pic %> class="" style="width: 200px; height:200px;" alt="...">
+                      <% } %>
+                      <% if(types[i] === '1') { %>
+                        <img src=<%= cartv[i][0].book_pic %> class="" style="width: 200px; height:200px;" alt="...">
+                      <% } %>
+                      <% if(types[i] === '2') { %>
+                        <img src=<%= cartv[i][0].figurine_pic %> class="" style="width: 200px; height:200px;" alt="...">
+                      <% } %>
+                      <% if(types[i] === '3') { %>
+                        <img src=<%= cartv[i][0].snack_pic %> class="" style="width: 200px; height:200px;" alt="...">
+                      <% } %>
+                      <% if(types[i] === '4') { %>
+                        <img src=<%= cartv[i][0].vgame_pic %> class="" style="width: 200px; height:200px;" alt="...">
+                      <% } %>
+                       <div>
+                         <div class="row">
+                           <div class="col-md-8">
+                             <!-- Product name goes here -->
+                      <% if(types[i] === '0') { %>
+                               <h4><%= cartv[i][0].apparel_name %> - <%= cartv[i][0].apparel_brand %></h4> 
+                      <% } %>
+                      <% if(types[i] === '1') { %>
+                               <h4><%= cartv[i][0].book_title %></h4> 
+                      <% } %>
+                      <% if(types[i] === '2') { %>
+                               <h4><%= cartv[i][0].figurine_name %> - <%= cartv[i][0].figurine_brand %></h4> 
+                      <% } %>
+                      <% if(types[i] === '3') { %>
+                               <h4><%= cartv[i][0].snack_name %> - <%= cartv[i][0].snack_brand %></h4> 
+                      <% } %>
+                      <% if(types[i] === '4') { %>
+                               <h4><%= cartv[i][0].vgame_name %></h4> 
+                      <% } %>
+                           </div>
 
-  <div class="col-md-4">
-            <!-- Get quantity of item -->
-            <select>
-              <option value="1" selected="selected">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5+</option>
-          </select>
-          
-          <!-- Get price of item and multiply by quantity -->
-          <span class="">×</span><span class="">$</span>
-
-          </div>
-  <div>
-
+                           <div>
   <!-- For each product in cart, add together and display subtotal. -->
-	<% if(types[i] === '0') { %>
+  <% if(types[i] === '0') { %>
   Price: <span>$<%= cartv[i][0].apparel_price %></span>
-	<% } %>
-	<% if(types[i] === '1') { %>
+  <% } %>
+  <% if(types[i] === '1') { %>
   Price: <span>$<%= cartv[i][0].book_price %></span>
-	<% } %>
-	<% if(types[i] === '2') { %>
+  <% } %>
+  <% if(types[i] === '2') { %>
   Price: <span>$<%= cartv[i][0].figurine_price %></span>
-	<% } %>
-	<% if(types[i] === '4') { %>
+  <% } %>
+  <% if(types[i] === '4') { %>
   Price: <span>$<%= cartv[i][0].vgame_price %></span>
-	<% } %>
-	<% if(types[i] === '3') { %>
+  <% } %>
+  <% if(types[i] === '3') { %>
   Price: <span>$<%= cartv[i][0].snack_price %></span>
-	<% } %>
+  <% } %>
   </div>
 
-</div>
+<div class="col col-lg-2">
+
+                            <h5 class="mt-0">Quantity</h5>
+
+                            <div class="btn-group">
+
+                                <select type="button" class="border-dark btn btn-white dropdown-toggle" data-toggle="dropdown"
+
+                                    aria-haspopup="true" aria-expanded="false">
+
+                                    <option value="1" selected="selected">1</option>
+
+                                    </button>
+
+                                    <div class="dropdown-menu">
+
+                                        <option value="2">2</option>
+
+                                        <option value="3">3</option>
+
+                                        <option value="4">4</option>
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <option value="0">Remove</option>
+
+                                    </div>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+        </div>
+   </div>
+
+  
+
+        <div class="container bg-secondary text-black">
+
+            <!-- For whatever reason, I can't seem to get the padding and CSS to work so I'm just going to leave this here-->
+
+              <div class="container bg-secondary text-black">
+
+            <br>
+
+            <br>
+
+            <br>
+
+        </div>
+
+        </div>
+
+    </div>
 <!-- For each product in user shopping cart, create the above HTML -->
 <% } %>
-<div>
-    <a class="btn btn-primary" href="/checkoutform" role="button">Proceed to Checkout</a>
-</div>
 <% } %>
+
+
+        <!-- For each product in user shopping cart, create the above HTML -->
+
+        <div class="container bg-light text-black">
+
+            <hr>
+
+            <!-- Get image from database or from public folder. -->
+
+            <!-- If you can't get the image, we can remove the image. -->
+
+            <div class="media">
+
+                <img class="align-self-center mr-3" style="width: 100px; height:25px;" src="https://www.transparenttextures.com/patterns/asfalt-light.png"
+
+                    alt="">
+
+                <div class="media-body">
+
+                    <div class="row">
+
+                        <div class="col">
+
+                            <h5 class="mt-0"></h5>
+
+                            <p></p>
+
+                        </div>
+
+                        <div class="col col-lg-2">
+
+                            <h5 class="mt-0">Subtotal</h5>
+
+                            <p>$200.00</p>
+
+
+                        </div>
+
+                        <div class="col col-lg-2">
+
+                            <h5 class="mt-0"></h5>
+
+                            <div class="btn-group">
+
+                                <div>
+
+                                    <a class="btn btn-warning" href="/checkoutform" role="button">Checkout</a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+        </div>
 <footer>
     <% include ../partials/footer %>
 </footer>
