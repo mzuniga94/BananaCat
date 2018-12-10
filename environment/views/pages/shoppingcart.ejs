@@ -42,26 +42,27 @@
     <br>
     <!-- Get image from database or from public folder. -->
     <!-- If you can't get the image, we can remove the image. -->
+    <div class="media">
                       <% for(var i = 0; i < types.length; i++) { %>
                       <% if(types[i] === '0') { %>
-                        <img src=<%= cartv[i][0].apparel_pic %> class="" style="width: 200px; height:200px;" alt="...">
+                        <img src=<%= cartv[i][0].apparel_pic %> class="" style="width: 100px; height:100px;" alt="...">
                       <% } %>
                       <% if(types[i] === '1') { %>
-                        <img src=<%= cartv[i][0].book_pic %> class="" style="width: 200px; height:200px;" alt="...">
+                        <img src=<%= cartv[i][0].book_pic %> class="" style="width: 100px; height:100px;" alt="...">
                       <% } %>
                       <% if(types[i] === '2') { %>
-                        <img src=<%= cartv[i][0].figurine_pic %> class="" style="width: 200px; height:200px;" alt="...">
+                        <img src=<%= cartv[i][0].figurine_pic %> class="" style="width: 100px; height:100px;" alt="...">
                       <% } %>
                       <% if(types[i] === '3') { %>
-                        <img src=<%= cartv[i][0].snack_pic %> class="" style="width: 200px; height:200px;" alt="...">
+                        <img src=<%= cartv[i][0].snack_pic %> class="" style="width: 100px; height:100px;" alt="...">
                       <% } %>
                       <% if(types[i] === '4') { %>
-                        <img src=<%= cartv[i][0].vgame_pic %> class="" style="width: 200px; height:200px;" alt="...">
+                        <img src=<%= cartv[i][0].vgame_pic %> class="" style="width: 100px; height:100px;" alt="...">
                       <% } %>
-                       <div>
+                       <div class="media-body">
                          <div class="row">
-                           <div class="col-md-8">
-                             <!-- Product name goes here -->
+                           <div class="col">
+                             <h5 class="ht=0"><!-- Product name goes here -->
                       <% if(types[i] === '0') { %>
                                <h4><%= cartv[i][0].apparel_name %> - <%= cartv[i][0].apparel_brand %></h4> 
                       <% } %>
@@ -77,26 +78,27 @@
                       <% if(types[i] === '4') { %>
                                <h4><%= cartv[i][0].vgame_name %></h4> 
                       <% } %>
-                           </div>
-
-                           <div>
-  <!-- For each product in cart, add together and display subtotal. -->
-  <% if(types[i] === '0') { %>
-  Price: <span>$<%= cartv[i][0].apparel_price %></span>
-  <% } %>
-  <% if(types[i] === '1') { %>
-  Price: <span>$<%= cartv[i][0].book_price %></span>
-  <% } %>
-  <% if(types[i] === '2') { %>
-  Price: <span>$<%= cartv[i][0].figurine_price %></span>
-  <% } %>
-  <% if(types[i] === '4') { %>
-  Price: <span>$<%= cartv[i][0].vgame_price %></span>
-  <% } %>
-  <% if(types[i] === '3') { %>
-  Price: <span>$<%= cartv[i][0].snack_price %></span>
-  <% } %>
-  </div>
+                            </h5>
+                           </div> <!--end of col-->
+                        
+                           <div class="col col-lg-2"> <!-- Price col-->
+                  <!-- For each product in cart, add together and display subtotal. -->
+                  <% if(types[i] === '0') { %>
+                  Price: <span>$<%= cartv[i][0].apparel_price %></span>
+                  <% } %>
+                  <% if(types[i] === '1') { %>
+                  Price: <span>$<%= cartv[i][0].book_price %></span>
+                  <% } %>
+                  <% if(types[i] === '2') { %>
+                  Price: <span>$<%= cartv[i][0].figurine_price %></span>
+                  <% } %>
+                  <% if(types[i] === '4') { %>
+                  Price: <span>$<%= cartv[i][0].vgame_price %></span>
+                  <% } %>
+                  <% if(types[i] === '3') { %>
+                  Price: <span>$<%= cartv[i][0].snack_price %></span>
+                  <% } %>
+                  </div><!--End of price col-->
 
 <div class="col col-lg-2">
 
